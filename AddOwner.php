@@ -64,7 +64,7 @@ if (!isset($_SESSION['loggedin']))
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Last Name</label>
-                        <div class="col-sm-10"><input required="" placeholder="e.g., Omar" type="text" class="form-control"></div>
+                        <div class="col-sm-10"><input required="" placeholder="e.g., ali" type="text" class="form-control"></div>
 
                     </div>
 
