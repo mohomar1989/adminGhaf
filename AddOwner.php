@@ -55,7 +55,7 @@ if (!isset($_SESSION['loggedin']))
 
                     <div class="form-group">
                         
-                        <label class="col-sm-2 control-label">First Name</label>
+                        <label class="col-sm-2 control-label">First Name test</label>
                         <div class="col-sm-10"><input required="" placeholder="e.g., Mohammed" type="text" class="form-control"></div>
 
                     </div>
