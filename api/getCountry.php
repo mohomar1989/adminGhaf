@@ -6,7 +6,7 @@ $dbName = "m3z8z9h6_ghafoman";
 
 $link = mysqli_connect($servername, $username, $password,$dbName);
 $id = $_GET['countryId'];
-$query = "select country_id, country_id,ar_country_id from Country where country_id=$id";
+$query = "select country_id,country_name,ar_country_name from Country where country_id=$id";
 $result = mysqli_query($link, $query);
 
 $rows=array();
