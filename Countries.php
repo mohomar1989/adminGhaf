@@ -15,6 +15,7 @@ if (!isset($_SESSION['loggedin']))
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>Welcome</title>
+        <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -140,6 +141,7 @@ if (!isset($_SESSION['loggedin']))
         <script src="js/bootstrap.min.js"></script>
         <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
         <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 
         <!-- Custom and plugin javascript -->
         <script src="js/inspinia.js"></script>
@@ -169,12 +171,43 @@ if (!isset($_SESSION['loggedin']))
                             "width": "10%",
 
                             "render": function (data, type, row) {
-                                return '<button type="button" onclick="getCountry(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>';
+                                return '<button type="button" onclick="getCountry(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>'
+                                + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
+                                        ;
                             }
                         }]
 
                 });
             });
+
+ function deleteArea(id) {
+
+                swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this imaginary file!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false
+                }, function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "api/delete.php", // replace 'PHP-FILE.php with your php file
+
+
+                        data: {"id": id,"table":"Country","col":"country_id"},
+                        success: function () {
+
+                            location.reload();
+                        },
+                        error: function () {
+                            alert('Some error occurred!');
+                        }
+                    });
+
+                });
+            }
 
             function getCountry(id) {
                 $('#arName').val("");
