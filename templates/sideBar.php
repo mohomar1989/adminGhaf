@@ -42,7 +42,7 @@
                         echo 'class="active"';
                     }
                     ?>>
-                        <a href="AddOwner.php"><i class="fa fa-user"></i> <span class="nav-label">Add Owner </span></a>
+                        <a href="AddOwner.php"><i class="fa fa-user-secret"></i> <span class="nav-label">Add Owner </span></a>
                     </li>
                     <li <?php
                     if ($pageNum == 2) {
@@ -56,7 +56,7 @@
                             echo 'class="active"';
                         }
                     ?>>
-                        <a href="AddProvider.php"><i class="fa fa-user"></i> <span class="nav-label">Add Provider </span></a>
+                        <a href="AddProvider.php"><i class="fa fa-building-o"></i> <span class="nav-label">Add Provider </span></a>
                     </li>
                 </ul>
             </li>
@@ -88,7 +88,7 @@
                         echo 'class="active"';
                     }
                     ?>>
-                        <a href="Amenities.php"><i class="fa fa-user"></i> <span class="nav-label">Amenities </span></a>
+                        <a href="Amenities.php"><i class="fa fa-star-o"></i> <span class="nav-label">Amenities </span></a>
                     </li>
                     <li <?php
                     if ($pageNum == 6) {
