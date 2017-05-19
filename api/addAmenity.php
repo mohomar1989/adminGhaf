@@ -18,4 +18,6 @@ $dbName = "m3z8z9h6_ghafoman";
 $link = mysqli_connect($servername, $username, $password,$dbName);
 $query = "INSERT INTO Amenity (amenity_id, amenity_name, ar_amenity_name) VALUES (NULL, '$amenityEn', '$amenityAr')";
 mysqli_query($link, $query);
+if($link != null)
+mysqli_close($link);
 header("Location: ../Amenities.php");
