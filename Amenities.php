@@ -49,26 +49,6 @@ if (!isset($_SESSION['loggedin']))
                 include 'templates/navigationTrack.php'
                 ?>
 
-
-                <div class="ibox">
-                    <div class="ibox-content">
-                        <table id="amenityTable" class="table table-striped table-bordered table-hover" >
-                            <thead>
-                                <tr>
-                                     <th>Amenity Id</th>
-                                    <th>Amenity en name</th>
-                                    <th>Amenity ar name</th>
-                                   
-                                    
-                                    <th>Edit/Delete</th>
-
-                                </tr>
-                            </thead>
-                        </table>
-
-                    </div>
-                </div>
-
                 <div class='ibox'>
                     <div class="ibox-content">
                         <form method="post" action="api/addAmenity.php" class="form-horizontal ">
@@ -96,6 +76,24 @@ if (!isset($_SESSION['loggedin']))
 
                     </div>
                 </div>
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <table id="amenityTable" class="table table-striped table-bordered table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>Amenity Id</th>
+                                    <th>Amenity en name</th>
+                                    <th>Amenity ar name</th>
+                                    <th>Edit/Delete</th>
+
+                                </tr>
+                            </thead>
+                        </table>
+
+                    </div>
+                </div>
+
+
             </div>
 
         </div>
@@ -169,7 +167,7 @@ if (!isset($_SESSION['loggedin']))
                             "width": "10%",
 
                             "render": function (data, type, row) {
-                                return '<button type="button" onclick="getAmenity(\''+row[0]+'\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>';
+                                return '<button type="button" onclick="getAmenity(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>';
                             }
                         }]
 
@@ -177,16 +175,16 @@ if (!isset($_SESSION['loggedin']))
             });
 
             function getAmenity(id) {
-              $('#arName').val("");
-              $('#enName').val("");
+                $('#arName').val("");
+                $('#enName').val("");
                 $.ajax({
                     type: "GET",
                     dataType: "json",
                     url: "api/getAmenity.php", // replace 'PHP-FILE.php with your php file
-                    data:{"amenityId":id},
-                    
+                    data: {"amenityId": id},
+
                     success: function (data) {
-                       // window.alert(data[0]["ar_amenity_name"]);
+                        // window.alert(data[0]["ar_amenity_name"]);
 
                         $('#arName').val(data[0]["ar_amenity_name"]);
                         $("#enName").val(data[0]["amenity_name"]);
