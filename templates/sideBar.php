@@ -88,7 +88,7 @@
                         echo 'class="active"';
                     }
                     ?>>
-                        <a href="AddOwner.php"><i class="fa fa-user"></i> <span class="nav-label">Amenities </span></a>
+                        <a href="Amenities.php"><i class="fa fa-user"></i> <span class="nav-label">Amenities </span></a>
                     </li>
                     <li <?php
                     if ($pageNum == 6) {
