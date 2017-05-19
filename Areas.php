@@ -5,6 +5,7 @@ session_start();
 if (!isset($_SESSION['loggedin']))
     header('Location: login.php');
 ?>
+<!DOCTYPE html>
 
 <html>
     <head>
@@ -103,11 +104,18 @@ if (!isset($_SESSION['loggedin']))
                         <h4 class="modal-title">Update area</h4>
                     </div>
                     <div class="modal-body">
-                        <form method="post" action="api/updateArea.php" class="form-horizontal ">
+                        <form method="post" action="api/updateEntry.php" class="form-horizontal ">
+
+                            <input type="hidden" value="Area" name="table">
+                            <input type="hidden" value="area_id" name="idCol">
+                            <input type="hidden" value="area_name" name="enCol">
+                            <input type="hidden" value="ar_area_name" name="arCol">
+                            <input type="hidden" value="Areas.php" name="redirect">
+                            <input type="hidden" value="" id="eId" name="id">
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">English Area Name</label>
-                                <div class="col-sm-10"><input required="" id="enName" name="areaEn" placeholder="e.g., Al Khoth" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input required="" id="enName" name="enName" placeholder="e.g., Al Khoth" type="text" class="form-control"></div>
 
                             </div>
 
@@ -116,7 +124,7 @@ if (!isset($_SESSION['loggedin']))
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Arabic Area Name</label>
-                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="areaAr" placeholder="e.g., الخوض" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="arName" placeholder="e.g., الخوض" type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -196,7 +204,7 @@ if (!isset($_SESSION['loggedin']))
                         url: "api/delete.php", // replace 'PHP-FILE.php with your php file
 
 
-                        data: {"id": id,"table":"Area","col":"area_id"},
+                        data: {"id": id, "table": "Area", "col": "area_id"},
                         success: function () {
 
                             location.reload();
@@ -223,6 +231,8 @@ if (!isset($_SESSION['loggedin']))
 
                         $('#arName').val(data[0]["ar_area_name"]);
                         $("#enName").val(data[0]["area_name"]);
+                        $("#eId").val(data[0]["area_id"]);
+
                     },
                     error: function () {
                         alert('Some error occurred!');

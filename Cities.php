@@ -5,6 +5,7 @@ session_start();
 if (!isset($_SESSION['loggedin']))
     header('Location: login.php');
 ?>
+<!DOCTYPE html>
 
 <html>
     <head>
@@ -104,11 +105,17 @@ if (!isset($_SESSION['loggedin']))
                         </div>
                     <div class="modal-body">
                       
-                        <form method="post" action="api/updateCity.php" class="form-horizontal ">
+                        <form method="post" action="api/updateEntry.php" class="form-horizontal ">
 
+                             <input type="hidden" value="City" name="table">
+                            <input type="hidden" value="city_id" name="idCol">
+                            <input type="hidden" value="city_name" name="enCol">
+                            <input type="hidden" value="ar_city_name" name="arCol">
+                            <input type="hidden" value="Cities.php" name="redirect">
+                            <input type="hidden" value="" id="eId" name="id">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">English City Name</label>
-                                <div class="col-sm-10"><input required="" id="enName" name="cityEn" placeholder="e.g., Muscat" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input required="" id="enName" name="enName" placeholder="e.g., Muscat" type="text" class="form-control"></div>
 
                             </div>
 
@@ -117,7 +124,7 @@ if (!isset($_SESSION['loggedin']))
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Arabic City Name</label>
-                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="cityAr" placeholder="e.g., مسقط" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="arName" placeholder="e.g., مسقط" type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -223,6 +230,8 @@ if (!isset($_SESSION['loggedin']))
 
                         $('#arName').val(data[0]["ar_city_name"]);
                         $("#enName").val(data[0]["city_name"]);
+                         $("#eId").val(data[0]["city_id"]);
+
                     },
                     error: function () {
                         alert('Some error occurred!');

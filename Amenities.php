@@ -5,6 +5,7 @@ session_start();
 if (!isset($_SESSION['loggedin']))
     header('Location: login.php');
 ?>
+<!DOCTYPE html>
 
 <html>
     <head>
@@ -54,6 +55,8 @@ if (!isset($_SESSION['loggedin']))
                     <div class="ibox-content">
                         <form method="post" action="api/addAmenity.php" class="form-horizontal ">
 
+                        
+
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">English Name</label>
                                 <div class="col-sm-10"><input required="" name="amenityEn" placeholder="e.g., Gym" type="text" class="form-control"></div>
@@ -101,26 +104,32 @@ if (!isset($_SESSION['loggedin']))
         <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content animated bounceInRight">
-                      <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title">Update amenity</h4>
-                        </div>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Update amenity</h4>
+                    </div>
                     <div class="modal-body">
-                      
-                        <form method="post" action="api/addAmenity.php" class="form-horizontal ">
+
+                        <form method="post" action="api/updateEntry.php" class="form-horizontal ">
+
+                                <input type="hidden" value="Amenity" name="table">
+                            <input type="hidden" value="amenity_id" name="idCol">
+                            <input type="hidden" value="amenity_name" name="enCol">
+                            <input type="hidden" value="ar_amenity_name" name="arCol">
+                            <input type="hidden" value="Amenities.php" name="redirect">
+                            <input type="hidden" value="" id="eId" name="id">
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">English Name</label>
-                                <div class="col-sm-10"><input required="" id="enName" name="amenityEn" placeholder="e.g., Gym" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input required="" id="enName" name="arName" placeholder="e.g., Gym" type="text" class="form-control"></div>
 
                             </div>
 
-                            <input type="hidden" id="amenityId" name="amenityId">
                             <div class="hr-line-dashed"></div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Arabic Name</label>
-                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="amenityAr" placeholder="e.g., نادي رياضي" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="enName" placeholder="e.g., نادي رياضي" type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -175,7 +184,7 @@ if (!isset($_SESSION['loggedin']))
 
                             "render": function (data, type, row) {
                                 return '<button type="button" onclick="getAmenity(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>'
-                                + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
+                                        + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
                                         ;
                             }
                         }]
@@ -183,7 +192,7 @@ if (!isset($_SESSION['loggedin']))
                 });
             });
 
- function deleteArea(id) {
+            function deleteArea(id) {
 
                 swal({
                     title: "Are you sure?",
@@ -199,7 +208,7 @@ if (!isset($_SESSION['loggedin']))
                         url: "api/delete.php", // replace 'PHP-FILE.php with your php file
 
 
-                        data: {"id": id,"table":"Amenity","col":"amenity_id"},
+                        data: {"id": id, "table": "Amenity", "col": "amenity_id"},
                         success: function () {
 
                             location.reload();
@@ -226,6 +235,7 @@ if (!isset($_SESSION['loggedin']))
 
                         $('#arName').val(data[0]["ar_amenity_name"]);
                         $("#enName").val(data[0]["amenity_name"]);
+                         $("#eId").val(data[0]["amenity_id"]);
                     },
                     error: function () {
                         alert('Some error occurred!');

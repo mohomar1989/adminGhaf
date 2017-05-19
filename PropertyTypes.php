@@ -5,6 +5,7 @@ session_start();
 if (!isset($_SESSION['loggedin']))
     header('Location: login.php');
 ?>
+<!DOCTYPE html>
 
 <html>
     <head>
@@ -49,7 +50,7 @@ if (!isset($_SESSION['loggedin']))
 
                 <div class='ibox'>
                     <div class="ibox-content">
-                        <form method="post" action="api/addPropertyType.php.php" class="form-horizontal ">
+                        <form method="post" action="api/addPropertyType.php" class="form-horizontal ">
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">English Property Type</label>
@@ -98,17 +99,23 @@ if (!isset($_SESSION['loggedin']))
         <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content animated bounceInRight">
-                           <div class="modal-header">
+                    <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         <h4 class="modal-title">Update property type</h4>
                     </div>
                     <div class="modal-body">
-                   
-                        <form method="post" action="api/updatePropertyType.php" class="form-horizontal ">
 
+                        <form method="post" action="api/updateEntry.php" class="form-horizontal ">
+
+                            <input type="hidden" value="PropertyType" name="table">
+                            <input type="hidden" value="propertyType_id" name="idCol">
+                            <input type="hidden" value="propertyType_name" name="enCol">
+                            <input type="hidden" value="ar_propertyType_name" name="arCol">
+                            <input type="hidden" value="PropertyTypes.php" name="redirect">
+                            <input type="hidden" value="" id="eId" name="id"> 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">English Property Type</label>
-                                <div class="col-sm-10"><input required="" id="enName" name="propertyTypeEn" placeholder="e.g.,Warehouse" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input required="" id="enName" name="enName" placeholder="e.g.,Warehouse" type="text" class="form-control"></div>
 
                             </div>
 
@@ -117,7 +124,7 @@ if (!isset($_SESSION['loggedin']))
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Arabic Property Type</label>
-                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="propertyTypeAr" placeholder="e.g., مخزن" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="arName" placeholder="e.g., مخزن" type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -172,7 +179,7 @@ if (!isset($_SESSION['loggedin']))
 
                             "render": function (data, type, row) {
                                 return '<button type="button" onclick="getPropertyType(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>'
-                                + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
+                                        + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
                                         ;
                             }
                         }]
@@ -180,7 +187,7 @@ if (!isset($_SESSION['loggedin']))
                 });
             });
 
- function deleteArea(id) {
+            function deleteArea(id) {
 
                 swal({
                     title: "Are you sure?",
@@ -196,7 +203,7 @@ if (!isset($_SESSION['loggedin']))
                         url: "api/delete.php", // replace 'PHP-FILE.php with your php file
 
 
-                        data: {"id": id,"table":"PropertyType","col":"propertyType_id"},
+                        data: {"id": id, "table": "PropertyType", "col": "propertyType_id"},
                         success: function () {
 
                             location.reload();
@@ -222,6 +229,8 @@ if (!isset($_SESSION['loggedin']))
 
                         $('#arName').val(data[0]["ar_propertyType_name"]);
                         $("#enName").val(data[0]["propertyType_name"]);
+                        $("#eId").val(data[0]["propertyType_id"]);
+
                     },
                     error: function () {
                         alert('Some error occurred!');
