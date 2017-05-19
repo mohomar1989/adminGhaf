@@ -5,18 +5,18 @@ $password = "Intheend13!";
 $dbName = "m3z8z9h6_ghafoman";
 
 $link = mysqli_connect($servername, $username, $password,$dbName);
-
-$query = "select amenity_id, amenity_name,ar_amenity_name from Amenity";
+$id = $_GET['amenityId'];
+$query = "select amenity_id, amenity_name,ar_amenity_name from Amenity where amenity_id=$id";
 $result = mysqli_query($link, $query);
-$rows= new stdClass();
-$tmp=array();
+
+$rows=array();
 
 
 
 
 while($row = mysqli_fetch_assoc($result)){
-   $tmp[] = array_values($row);
-    
+   
+    $rows [] = $row;
 }
-$rows->data=$tmp;
+
 echo json_encode($rows,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);

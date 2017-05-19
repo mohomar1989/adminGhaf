@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['loggedin']))
     header('Location: login.php');
 ?>
-<!DOCTYPE html>
+
 <html>
     <head>
 
@@ -55,8 +55,11 @@ if (!isset($_SESSION['loggedin']))
                         <table id="amenityTable" class="table table-striped table-bordered table-hover" >
                             <thead>
                                 <tr>
+                                     <th>Amenity Id</th>
                                     <th>Amenity en name</th>
                                     <th>Amenity ar name</th>
+                                   
+                                    
                                     <th>Edit/Delete</th>
 
                                 </tr>
@@ -96,36 +99,37 @@ if (!isset($_SESSION['loggedin']))
             </div>
 
         </div>
-                            <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-                          <div class="modal-dialog">
-                              <div class="modal-content animated bounceInRight">
-                                  <div class="modal-body">
-                                          <form method="post" action="api/addAmenity.php" class="form-horizontal ">
+        <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-body">
+                        <form method="post" action="api/addAmenity.php" class="form-horizontal ">
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">English Name</label>
-                                <div class="col-sm-10"><input required="" name="amenityEn" placeholder="e.g., Gym" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input required="" id="enName" name="amenityEn" placeholder="e.g., Gym" type="text" class="form-control"></div>
 
                             </div>
 
+                            <input type="hidden" id="amenityId" name="amenityId">
                             <div class="hr-line-dashed"></div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Arabic Name</label>
-                                <div class="col-sm-10"><input required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="amenityAr" placeholder="e.g., نادي رياضي" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="amenityAr" placeholder="e.g., نادي رياضي" type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
-                                    <button class="btn btn-primary" type="submit">Add amenity</button>
+                                    <button class="btn btn-primary" type="submit">Update amenity</button>
                                 </div>
                             </div>
                         </form>
-                                  </div>
-                              </div>
-                          </div>
-                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -161,19 +165,40 @@ if (!isset($_SESSION['loggedin']))
                     "ajax": "api/getAmenities.php",
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                     "columnDefs": [{
-                            "targets": 2,
-                            "width":"10%",
-                            
+                            "targets": 3,
+                            "width": "10%",
+
                             "render": function (data, type, row) {
-                                return '<a type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></a>';
+                                return '<button type="button" onclick="getAmenity(\''+row[0]+'\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>';
                             }
                         }]
 
                 });
             });
 
+            function getAmenity(id) {
+              $('#arName').val("");
+              $('#enName').val("");
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "api/getAmenity.php", // replace 'PHP-FILE.php with your php file
+                    data:{"amenityId":id},
+                    
+                    success: function (data) {
+                       // window.alert(data[0]["ar_amenity_name"]);
+
+                        $('#arName').val(data[0]["ar_amenity_name"]);
+                        $("#enName").val(data[0]["amenity_name"]);
+                    },
+                    error: function () {
+                        alert('Some error occurred!');
+                    }
+                });
+            }
+
         </script>
 
-     
+
     </body>
 </html>
