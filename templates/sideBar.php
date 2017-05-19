@@ -80,7 +80,7 @@
                         echo 'class="active"';
                     }
                     ?>>
-                        <a href="AddProperty.php"><i class="fa fa-building"></i> <span class="nav-label">Property Types </span></a>
+                        <a href="PropertyTypes.php"><i class="fa fa-building"></i> <span class="nav-label">Property Types </span></a>
                     </li>
 
                     <li <?php
@@ -95,21 +95,21 @@
                         echo 'class="active"';
                     }
                     ?>>
-                        <a  href="AddRenter.php"><i class="fa fa-user"></i> <span class="nav-label">Property Country </span></a>
+                        <a  href="Countries.php"><i class="fa fa-user"></i> <span class="nav-label">Property Country </span></a>
                     </li>
                     <li <?php
                         if ($pageNum == 7) {
                             echo 'class="active"';
                         }
                     ?>>
-                        <a href="AddProvider.php"><i class="fa fa-user"></i> <span class="nav-label">Property City</span></a>
+                        <a href="Cities.php"><i class="fa fa-user"></i> <span class="nav-label">Property City</span></a>
                     </li>
                        <li <?php
                         if ($pageNum == 8) {
                             echo 'class="active"';
                         }
                     ?>>
-                        <a href="AddProvider.php"><i class="fa fa-user"></i> <span class="nav-label">Property Area</span></a>
+                        <a href="Areas.php"><i class="fa fa-user"></i> <span class="nav-label">Property Area</span></a>
                     </li>
                 </ul>
             </li>
