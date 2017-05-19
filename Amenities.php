@@ -121,7 +121,7 @@ if (!isset($_SESSION['loggedin']))
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">English Name</label>
-                                <div class="col-sm-10"><input required="" id="enName" name="arName" placeholder="e.g., Gym" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input required="" id="enName" name="enName" placeholder="e.g., Gym" type="text" class="form-control"></div>
 
                             </div>
 
@@ -129,7 +129,7 @@ if (!isset($_SESSION['loggedin']))
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Arabic Name</label>
-                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="enName" placeholder="e.g., نادي رياضي" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input id="arName" required="" pattern="^[\u0621-\u064A0-9 ]+$"  name="arName" placeholder="e.g., نادي رياضي" type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
