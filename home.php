@@ -18,6 +18,7 @@ if (!isset($_SESSION['loggedin']))
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>Welcome</title>
+
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
         <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
@@ -33,70 +34,26 @@ if (!isset($_SESSION['loggedin']))
     </head>
     <body >
         <div id="wrapper">
-            <nav class="navbar-default navbar-static-side" role="navigation">
-                <div class="sidebar-collapse">
-                    <ul class="nav metismenu" id="side-menu">
-                        <li class="nav-header">
-                            <div class="dropdown profile-element"> <span>
-                                    <img alt="image" height="48" width="48" class="img-thumbnail" src="img/logo.jpeg" />
-                                </span>
-                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                    <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Admin</strong>
-                                        </span> <span class="text-muted text-xs block">Account <b class="caret"></b></span> </span> </a>
-                                <ul class="dropdown-menu animated fadeInRight m-t-xs">
 
-                                    <li><a href="logout.php">Logout</a></li>
-                                </ul>
-                            </div>
+            <!-- Side bar menu -->
+            <?php $pageNum = -1;
+            include 'templates/sideBar.php'
+            ?>
 
-                        </li>
+
+            <div id="page-wrapper" class="gray-bg dashbard-1">
+              
+
+                <div class='ibox'>
+                    <!-- Add property form -->
+                    <div class="ibox-content">
                      
 
-
-                       <li >
-                            <a href="AddProperty.php"><i class="fa fa-building"></i> <span class="nav-label">Add Property </span></a>
-                        </li>
-
-                        <li>
-                            <a href="AddOwner.php"><i class="fa fa-user"></i> <span class="nav-label">Add Owner </span></a>
-                        </li>
-                        <li>
-                            <a href="AddRenter.php"><i class="fa fa-user"></i> <span class="nav-label">Add Renter </span></a>
-                        </li>
-                        <li>
-                            <a href="AddProvider.php"><i class="fa fa-user"></i> <span class="nav-label">Add Provider </span></a>
-                        </li>
-                        <li>
-                            <a ><i class="fa fa-user"></i> <span class="nav-label">Available Properties</span></a>
-                        </li>
-                        <li>
-                            <a ><i class="fa fa-user"></i> <span class="nav-label">Rented Properties </span></a>
-                        </li>
-                        <li>
-                            <a ><i class="fa fa-user"></i> <span class="nav-label">Sold Properties </span></a>
-                        </li>
-                    </ul>
-
-                </div>
-            </nav>
-        </div>
-
-        <div id="page-wrapper" class="gray-bg dashbard-1">
-            <div class="row border-bottom">
-                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-
-                    <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " ><i class="fa fa-bars"></i> </a>
-
                     </div>
-
-                </nav>
+                </div>
             </div>
+
         </div>
-
-
-
-
 
 
 
@@ -124,16 +81,7 @@ if (!isset($_SESSION['loggedin']))
 
         <script>
 
-            Dropzone.autoDiscover = false;
-            jQuery(document).ready(function () {
-
-                $("div#my-awesome-dropzone").dropzone({
-                    url: "./img/test",
-                    dictDefaultMessage: "<strong>Drop files here or click to upload. </strong></br>Upload maximum of 10 pictures of property with preferable size of 189*189 pixels and not more than 1MB."
-
-                });
-
-            });
+         
 
         </script>
 
