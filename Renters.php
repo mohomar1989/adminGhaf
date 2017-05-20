@@ -157,7 +157,18 @@ if (!isset($_SESSION['loggedin']))
                                 + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
                                         ;
                             }
-                        }]
+                        }],
+                        responsive : true,
+                                        dom: '<"html5buttons"B>lTfgitp',
+
+                        buttons: [
+                
+                
+                    {extend: 'excel', title: 'Renters'}
+             
+
+                
+                ]
 
                 });
             });
