@@ -171,6 +171,7 @@ if (!isset($_SESSION['loggedin']))
 
             $(document).ready(function () {
                 $('#countryTable').DataTable({
+                    searching: false,
 
                     "ajax": "api/getCountries.php",
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],

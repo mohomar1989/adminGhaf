@@ -37,29 +37,29 @@ if (!isset($_SESSION['loggedin']))
 
             <!-- Side bar menu -->
             <?php
-            $pageNum = 13;
+            $pageNum = 12;
             include 'templates/sideBar.php'
             ?>
 
 
             <div id="page-wrapper" class="gray-bg dashbard-1">
                 <?php
-                $trackerPageName = "Renters";
+                $trackerPageName = "Owners";
                 include 'templates/navigationTrack.php'
                 ?>
 
 
                 <div class="ibox">
                     <div class="ibox-content">
-                        <table id="renterTable" class="table table-striped table-bordered table-hover" >
+                        <table id="ownerTable" class="table table-striped table-bordered table-hover" >
                             <thead>
                                 <tr>
-                                    <th>Renter ID</th>
-                                    <th>Renter First Name</th>
-                                    <th>Renter Last Name</th>
-                                    <th>Renter Number</th>
-                                    <th>Renter Email</th>
-                                    <th>Renter Username</th>
+                                    <th>Owner ID</th>
+                                    <th>Owner First Name</th>
+                                    <th>Owner Last Name</th>
+                                    <th>Owner Number</th>
+                                    <th>Owner Email</th>
+                                    <th>Owner Username</th>
                                     <th>Edit/Delete</th>
                                 </tr>
                             </thead>
@@ -77,55 +77,55 @@ if (!isset($_SESSION['loggedin']))
                 <div class="modal-content animated bounceInRight">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title">Update Renter</h4>
+                        <h4 class="modal-title">Update Owner</h4>
                     </div>
                     <div class="modal-body">
 
-                        <form method="post" action="api/updateRenter.php" class="form-horizontal ">
+                        <form method="post" action="api/updateOwner.php" class="form-horizontal ">
 
 
-                            <input type="hidden" name="renter_id" id="renter_id">
+                            <input type="hidden" name="owner_id" id="owner_id">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Renter First Name</label>
-                                <div class="col-sm-10"><input required="" id="renter_first_name" name="renter_first_name"  type="text" class="form-control"></div>
+                                <label class="col-sm-2 control-label">Owner First Name</label>
+                                <div class="col-sm-10"><input required="" id="owner_first_name" name="owner_first_name"  type="text" class="form-control"></div>
 
                             </div>
 
                             <div class="hr-line-dashed"></div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Renter Last Name</label>
-                                <div class="col-sm-10"><input id="renter_last_name" required=""   name="renter_last_name"  type="text" class="form-control"></div>
+                                <label class="col-sm-2 control-label">Owner Last Name</label>
+                                <div class="col-sm-10"><input id="owner_last_name" required=""   name="owner_last_name"  type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Renter Email</label>
-                                <div class="col-sm-10"><input id="renter_email" required=""   name="renter_email"  type="text" class="form-control"></div>
+                                <label class="col-sm-2 control-label">Owner Email</label>
+                                <div class="col-sm-10"><input id="owner_email" required=""   name="owner_email"  type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Renter Number</label>
-                                <div class="col-sm-10"><input id="renter_number" required=""   name="renter_number"  type="text" class="form-control"></div>
+                                <label class="col-sm-2 control-label">Owner Number</label>
+                                <div class="col-sm-10"><input id="owner_number" required=""   name="owner_number"  type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Renter Username</label>
-                                <div class="col-sm-10"><input id="renter_username" required=""   name="renter_username"  type="text" class="form-control"></div>
+                                <label class="col-sm-2 control-label">Owner Username</label>
+                                <div class="col-sm-10"><input id="owner_username" required=""   name="owner_username"  type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Renter Password</label>
-                                <div class="col-sm-10"><input id="renter_password" required=""   name="renter_password"  type="text" class="form-control"></div>
+                                <label class="col-sm-2 control-label">Owner Password</label>
+                                <div class="col-sm-10"><input id="owner_password" required=""   name="owner_password"  type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
-                                    <button class="btn btn-primary" type="submit">Update Renter</button>
+                                    <button class="btn btn-primary" type="submit">Update Owner</button>
                                 </div>
                             </div>
                         </form>
@@ -164,16 +164,15 @@ if (!isset($_SESSION['loggedin']))
         <script>
 
             $(document).ready(function () {
-                $('#renterTable').DataTable({
+                $('#ownerTable').DataTable({
                     searching: false,
-
-                    "ajax": "api/getRenters.php",
+                    "ajax": "api/getOwners.php",
                     "columnDefs": [{
                             "targets": 6,
                             "width": "10%",
 
                             "render": function (data, type, row) {
-                                return '<button type="button" onclick="getRenter(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>'
+                                return '<button type="button" onclick="getOwner(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>'
                                         + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
                                         ;
                             }
@@ -201,7 +200,7 @@ if (!isset($_SESSION['loggedin']))
                         url: "api/delete.php", // replace 'PHP-FILE.php with your php file
 
 
-                        data: {"id": id, "table": "Renter", "col": "renter_id"},
+                        data: {"id": id, "table": "Owner", "col": "owner_id"},
                         success: function () {
 
                             location.reload();
@@ -213,31 +212,31 @@ if (!isset($_SESSION['loggedin']))
 
                 });
             }
-            function getRenter(id) {
-                $('#renter_first_name').val("");
-                $('#renter_last_name').val("");
-                $('#renter_email').val("");
-                $('#renter_number').val("");
-                $('#renter_username').val("");
-                $('#renter_password').val("");
-                $('#renter_id').val("");
+            function getOwner(id) {
+                $('#owner_first_name').val("");
+                $('#owner_last_name').val("");
+                $('#owner_email').val("");
+                $('#owner_number').val("");
+                $('#owner_username').val("");
+                $('#owner_password').val("");
+                $('#owner_id').val("");
 
                 $.ajax({
                     type: "GET",
                     dataType: "json",
                     url: "api/getEntry.php", // replace 'PHP-FILE.php with your php file
-                    data: {"id": id, "pk": "renter_id", "table": "Renter"},
+                    data: {"id": id, "pk": "owner_id", "table": "Owner"},
 
                     success: function (data) {
                         // window.alert(data[0]["ar_amenity_name"]);
 
-                        $('#renter_first_name').val(data[0]["renter_first_name"]);
-                        $('#renter_last_name').val(data[0]["renter_last_name"]);
-                        $('#renter_email').val(data[0]["renter_email"]);
-                        $('#renter_number').val(data[0]["renter_number"]);
-                        $('#renter_username').val(data[0]["renter_username"]);
-                        $('#renter_password').val(data[0]["renter_password"]);
-                        $('#renter_id').val(data[0]["renter_id"]);
+                        $('#owner_first_name').val(data[0]["owner_first_name"]);
+                        $('#owner_last_name').val(data[0]["owner_last_name"]);
+                        $('#owner_email').val(data[0]["owner_email"]);
+                        $('#owner_number').val(data[0]["owner_number"]);
+                        $('#owner_username').val(data[0]["owner_username"]);
+                        $('#owner_password').val(data[0]["owner_password"]);
+                        $('#owner_id').val(data[0]["owner_id"]);
 
 
 

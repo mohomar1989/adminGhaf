@@ -170,6 +170,7 @@ if (!isset($_SESSION['loggedin']))
 
             $(document).ready(function () {
                 $('#propertyTypeTable').DataTable({
+                    searching: false,
 
                     "ajax": "api/getPropertyTypes.php",
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],

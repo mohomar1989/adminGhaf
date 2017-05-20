@@ -171,6 +171,7 @@ if (!isset($_SESSION['loggedin']))
 
             $(document).ready(function () {
                 $('#areaTable').DataTable({
+                    searching: false,
 
                     "ajax": "api/getAreas.php",
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],

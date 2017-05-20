@@ -158,7 +158,7 @@
                         echo 'class="active"';
                     }
                     ?>>
-                        <a  href="AddRenter.php"><i class="fa fa-user"></i> <span class="nav-label">Owners</span></a>
+                        <a  href="Owners.php"><i class="fa fa-user"></i> <span class="nav-label">Owners</span></a>
                     </li>
                     
                     
@@ -175,7 +175,7 @@
                         echo 'class="active"';
                     }
                     ?>>
-                        <a  href="AddRenter.php"><i class="fa fa-user"></i> <span class="nav-label">Providers</span></a>
+                        <a  href="Providers.php"><i class="fa fa-user"></i> <span class="nav-label">Providers</span></a>
                     </li>
                 </ul>
             </li>
