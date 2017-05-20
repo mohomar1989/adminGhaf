@@ -1,3 +1,9 @@
+<?php
+
+ session_start();
+ 
+ ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -39,7 +45,7 @@
             </form>
             <?php 
            
-                 session_start();
+                
           if(isset($_SESSION['loginError']) && $_SESSION['loginError']>0) {
  echo 'incorrect username/ password please try again.' ;
  unset($_SESSION['loginError']);
