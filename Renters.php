@@ -159,16 +159,7 @@ if (!isset($_SESSION['loggedin']))
                             }
                         }],
                         responsive : true,
-                                        dom: '<"html5buttons"B>lTfgitp',
 
-                        buttons: [
-                
-                
-                    {extend: 'excel', title: 'Renters'}
-             
-
-                
-                ]
 
                 });
             });
