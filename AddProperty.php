@@ -189,9 +189,8 @@ if (!isset($_SESSION['loggedin']))
                             <div class="hr-line-dashed"></div>
                             <div  class="form-group">
                                 <label class="col-sm-2 control-label">Property Provider</label>
-                                <div class="col-sm-10"><select id="mySelect" class="form-control m-b" name="propertyProvider">
-                                        <option value="1">Al Ghaf</option>
-                                        <option value="2">Provider 1</option>
+                                <div class="col-sm-10"><select id="providersSelect" class="form-control m-b" name="propertyProvider">
+
                                     </select>
                                 </div>
 
@@ -201,10 +200,8 @@ if (!isset($_SESSION['loggedin']))
                             <div class="hr-line-dashed"></div>
                             <div id="addOwner"  class="form-group">
                                 <label class="col-sm-2 control-label">Property Owner</label>
-                                <div class="col-sm-10"><select id="mySelect" class="form-control m-b" name="propertyOwner">
-                                        <option value="1">Al Ghaf</option>
-
-                                        <option value="2">Owner 2</option>
+                                <div class="col-sm-10">
+                                    <select id="ownersSelect" class="form-control m-b" name="propertyOwner">
 
 
                                     </select>
@@ -271,6 +268,7 @@ if (!isset($_SESSION['loggedin']))
         <script>
 
             jQuery(document).ready(function () {
+
                 $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
 
                 $.ajax({
@@ -403,32 +401,77 @@ if (!isset($_SESSION['loggedin']))
 
                         });
 
-                        $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
 
+                        getProviders();
 
                     }
 
                 });
 
 
-
-
-
-
-
             }
+            function getProviders() {
 
-            $(document).ready(function () {
-                toggleFields(); // call this first so we start out with the correct visibility depending on the selected form values
-                // this will call our toggleFields function every time the selection value of our other field changes
-                $("#mySelect").change(function () {
-                    toggleFields();
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getProviders.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            $('#providersSelect')
+                                    .append($("<option></option>")
+                                            .attr("value", value.provider_id)
+                                            .text(value.provider_name));
+                        });
+
+                        getOwners();
+
+                    }
+
                 });
 
-            });
+            }
+            function getOwners() {
+
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getOwners.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            $('#ownersSelect')
+                                    .append($("<option></option>")
+                                            .attr("value", value.owner_id)
+                                            .text(value.owner_first_name + " " + value.owner_last_name));
+                        });
+
+                        $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+                        toggleFields(); // call this first so we start out with the correct visibility depending on the selected form values
+                        // this will call our toggleFields function every time the selection value of our other field changes
+                        $("#providersSelect").change(function () {
+                            toggleFields();
+                        });
+
+
+                    }
+
+                });
+            }
+
+
 // this toggles the visibility of other server
             function toggleFields() {
-                if ($("#mySelect").val() === "1")
+                if ($("#providersSelect").val() === "1")
                     $("#addOwner").show();
                 else
                     $("#addOwner").hide();

@@ -49,9 +49,13 @@ if (!isset($_SESSION['loggedin']))
                 ?>
 
 
-                <div class='ibox'>
+                <div id="ibox1" class='ibox'>
                     <!-- Add property form -->
                     <div class="ibox-content">
+                        <div class="sk-spinner sk-spinner-double-bounce">
+                            <div class="sk-double-bounce1"></div>
+                            <div class="sk-double-bounce2"></div>
+                        </div>
                         <form method="post" action="api/addProvider.php" class="form-horizontal ">
 
                             <div class="form-group">
@@ -124,7 +128,7 @@ if (!isset($_SESSION['loggedin']))
 
                 e.preventDefault(); // prevent native submit
                 $(this).ajaxSubmit({
-                    clearForm: true,
+                    resetForm: true,
                     success: function () {
                         $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
                         swal({

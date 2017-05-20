@@ -34,20 +34,26 @@ if (!isset($_SESSION['loggedin']))
     </head>
     <body >
         <div id="wrapper">
-            <?php $pageNum = 2;
+            <?php
+            $pageNum = 2;
             include 'templates/sideBar.php';
             ?>
 
 
             <div id="page-wrapper" class="gray-bg dashbard-1">
-                <?php $trackerPageName = "Add new renter";
+                <?php
+                $trackerPageName = "Add new renter";
                 include 'templates/navigationTrack.php'
                 ?>
 
 
-                <div class="ibox">
+                <div class="ibox" id="ibox1">
                     <!-- Add property form -->
                     <div class="ibox-content">
+                        <div class="sk-spinner sk-spinner-double-bounce">
+                            <div class="sk-double-bounce1"></div>
+                            <div class="sk-double-bounce2"></div>
+                        </div>
                         <form method="post" action="api/addRenter.php" class="form-horizontal">
 
                             <div class="form-group">
@@ -142,10 +148,10 @@ if (!isset($_SESSION['loggedin']))
         <!-- CodeMirror -->
         <script src="js/plugins/codemirror/codemirror.js"></script>
         <script src="js/plugins/codemirror/mode/xml/xml.js"></script>
-          <script src="js/jquery.form.min.js"></script>
+        <script src="js/jquery.form.min.js"></script>
         <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
-        
-          <script>
+
+        <script>
 
             $('form').on('submit', function (e) {
                 $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
