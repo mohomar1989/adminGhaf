@@ -212,6 +212,12 @@ if (!isset($_SESSION['loggedin']))
 
                             </div>
 
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">360 Link</label>
+                                <div class="col-sm-10 "><input name="property360"  required="" placeholder="e.g., Url of the 360 image" type="text" class="form-control"></div>
+                            </div>
 
                             <div class="hr-line-dashed"></div>
 
@@ -383,18 +389,18 @@ if (!isset($_SESSION['loggedin']))
                         $.each(data, function (key, value) {
                             $('#amenities')
                                     .append($("<label></label>")
-                                    
-                
-                                    .append($("<input>")
-                                            .attr("value", value.amenity_id)
-                                            .attr("name", "propertyAmenities[]")
-                                            .attr("type","checkbox")
-                                    ).append(" "+value.amenity_name+" ")
-                                    );
-                                       
-                                           
-                         
-                                          
+
+
+                                            .append($("<input>")
+                                                    .attr("value", value.amenity_id)
+                                                    .attr("name", "propertyAmenities[]")
+                                                    .attr("type", "checkbox")
+                                                    ).append(" " + value.amenity_name + " ")
+                                            );
+
+
+
+
                         });
 
                         $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
