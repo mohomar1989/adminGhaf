@@ -94,7 +94,7 @@ if (!isset($_SESSION['loggedin']))
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Provider Logo</label>
-                                <div class="col-sm-10"><img src="" style="max-height: 100px;max-width: 100px" id="provider_logo_image"></div>
+                                <div class="col-sm-10"><img src="" width="100" style="max-height: 100px;max-width: 100px" id="provider_logo_image"></div>
                                 <div class="col-sm-10"><input id="provider_logo" type="file" required=""   name="provider_logo" onchange="document.getElementById('provider_logo_image').src = window.URL.createObjectURL(this.files[0])" class="form-control"></div>
 
                             </div>
