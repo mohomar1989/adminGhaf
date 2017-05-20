@@ -30,7 +30,14 @@ $query = "INSERT"
         . " renter_password) "
         . "VALUES (NULL, '$renter_first_name', '$renter_last_name', '$renter_email', '$renter_number', '$renter_username', '$renter_password')";
 
-mysqli_query($link, $query);
+if(!mysqli_query($link, $query)){
+            header('HTTP/1.1 500 Internal Server');
+
+      
+
+}
+
+
 if ($link != null) {
     mysqli_close($link);
 }

@@ -119,8 +119,11 @@
                     switch($pageNum){
                         case 9:
                         case 10:
-                        
+                        case 12:
+                        case 13:
+                        case 14:
                         case 11:echo 'class="active"';break;
+                        
                     }
                     ?>>
                 <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">View data</span><span class="fa arrow"></span></a>
@@ -150,6 +153,30 @@
                         <a  href="AddRenter.php"><i class="fa fa-user"></i> <span class="nav-label">Sold Properties </span></a>
                     </li>
                    
+                     <li <?php
+                    if ($pageNum == 12) {
+                        echo 'class="active"';
+                    }
+                    ?>>
+                        <a  href="AddRenter.php"><i class="fa fa-user"></i> <span class="nav-label">Owners</span></a>
+                    </li>
+                    
+                    
+                     <li <?php
+                    if ($pageNum == 13) {
+                        echo 'class="active"';
+                    }
+                    ?>>
+                        <a  href="Renters.php"><i class="fa fa-user"></i> <span class="nav-label">Renters</span></a>
+                    </li>
+                    
+                     <li <?php
+                    if ($pageNum == 14) {
+                        echo 'class="active"';
+                    }
+                    ?>>
+                        <a  href="AddRenter.php"><i class="fa fa-user"></i> <span class="nav-label">Providers</span></a>
+                    </li>
                 </ul>
             </li>
             

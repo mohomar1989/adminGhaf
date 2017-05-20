@@ -81,7 +81,7 @@ if (!isset($_SESSION['loggedin']))
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Mobile #</label>
-                                <div class="col-sm-10"><input required="" name = "renter_number" placeholder="e.g., 00971727261521" type="number" class="form-control"></div>
+                                <div class="col-sm-10"><input required="" name = "renter_number" placeholder="e.g., 00971727261521" type="tel" class="form-control"></div>
 
                             </div>
 
@@ -159,6 +159,15 @@ if (!isset($_SESSION['loggedin']))
                 e.preventDefault(); // prevent native submit
                 $(this).ajaxSubmit({
                     clearForm: true,
+                    error: function(data){
+                          $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+                        swal({
+                            title: "NotSaved!",
+                            text: "Username already exists.",
+                            type: "warning"
+                        });
+                        
+                    },
                     success: function () {
                         $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
                         swal({
@@ -167,6 +176,7 @@ if (!isset($_SESSION['loggedin']))
                             type: "success"
                         });
                     }
+                    
                 }
 
                 );
