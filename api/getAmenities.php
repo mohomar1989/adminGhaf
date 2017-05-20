@@ -5,7 +5,7 @@ $password = "Intheend13!";
 $dbName = "m3z8z9h6_ghafoman";
 
 $link = mysqli_connect($servername, $username, $password,$dbName);
-
+mysqli_set_charset($link, "utf8");
 $query = "select amenity_id, amenity_name,ar_amenity_name from Amenity";
 $result = mysqli_query($link, $query);
 $rows= new stdClass();

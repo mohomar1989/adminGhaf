@@ -5,6 +5,8 @@ $password = "Intheend13!";
 $dbName = "m3z8z9h6_ghafoman";
 
 $link = mysqli_connect($servername, $username, $password,$dbName);
+mysqli_set_charset($link, "utf8");
+
 $id = $_GET['areaId'];
 $query = "select area_id, area_name,ar_area_name from Area where area_id=$id";
 $result = mysqli_query($link, $query);

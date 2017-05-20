@@ -5,6 +5,8 @@ $password = "Intheend13!";
 $dbName = "m3z8z9h6_ghafoman";
 
 $link = mysqli_connect($servername, $username, $password,$dbName);
+mysqli_set_charset($link, "utf8");
+
 
 $query = "select propertyType_id, propertyType_name,ar_propertyType_name from PropertyType";
 $result = mysqli_query($link, $query);
