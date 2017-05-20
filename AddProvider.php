@@ -28,7 +28,7 @@ if (!isset($_SESSION['loggedin']))
         <link href="css/plugins/dropzone/dropzone.css" rel="stylesheet">
         <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
         <link href="css/plugins/codemirror/codemirror.css" rel="stylesheet">
-
+        <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
         <link href="css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
     </head>
@@ -36,13 +36,15 @@ if (!isset($_SESSION['loggedin']))
         <div id="wrapper">
 
             <!-- Side bar menu -->
-            <?php $pageNum = 3;
+            <?php
+            $pageNum = 3;
             include 'templates/sideBar.php'
             ?>
 
 
             <div id="page-wrapper" class="gray-bg dashbard-1">
-                <?php $trackerPageName = "Add new provider";
+                <?php
+                $trackerPageName = "Add new provider";
                 include 'templates/navigationTrack.php'
                 ?>
 
@@ -50,11 +52,11 @@ if (!isset($_SESSION['loggedin']))
                 <div class='ibox'>
                     <!-- Add property form -->
                     <div class="ibox-content">
-                        <form method="post" action="add property in api service later" class="form-horizontal ">
+                        <form method="post" action="api/addProvider.php" class="form-horizontal ">
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Provider Name</label>
-                                <div class="col-sm-10"><input required="" placeholder="e.g., Name of provider" type="text" class="form-control"></div>
+                                <div class="col-sm-10"><input required="" name="provider_name" placeholder="e.g., Name of provider" type="text" class="form-control"></div>
 
                             </div>
 
@@ -64,7 +66,7 @@ if (!isset($_SESSION['loggedin']))
 
                                 <div class="col-sm-10 fileinput fileinput-new" data-provides="fileinput">
                                     <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span>
-                                        <span class="fileinput-exists">Change</span><input required="" type="file" name="..."/></span>
+                                        <span class="fileinput-exists">Change</span><input   required="" type="file" name="provider_logo"/></span>
                                     <span class="fileinput-filename"></span>
                                     <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
                                 </div> 
@@ -110,123 +112,33 @@ if (!isset($_SESSION['loggedin']))
         <!-- CodeMirror -->
         <script src="js/plugins/codemirror/codemirror.js"></script>
         <script src="js/plugins/codemirror/mode/xml/xml.js"></script>
+        <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+        <link href="css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+        <script src="js/jquery.form.min.js"></script>
+        <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 
         <script>
 
-            Dropzone.autoDiscover = false;
-            jQuery(document).ready(function () {
+            $('form').on('submit', function (e) {
+                $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
 
-                $("div#my-awesome-dropzone").dropzone({
-                    url: "./img/test",
-                    dictDefaultMessage: "<strong>Drop files here or click to upload. </strong></br>Upload maximum of 10 pictures of property with preferable size of 189*189 pixels and not more than 1MB."
+                e.preventDefault(); // prevent native submit
+                $(this).ajaxSubmit({
+                    clearForm: true,
+                    success: function () {
+                        $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+                        swal({
+                            title: "Saved!",
+                            text: "New provider has been added!",
+                            type: "success"
+                        });
+                    }
+                }
 
-                });
+                );
 
             });
-
         </script>
 
-        <script>
-            /*
-             $(document).ready(function() {
-             setTimeout(function() {
-             toastr.options = {
-             closeButton: true,
-             progressBar: true,
-             showMethod: 'slideDown',
-             timeOut: 4000
-             };
-             toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
-             
-             }, 1300);
-             
-             
-             var data1 = [
-             [0,4],[1,8],[2,5],[3,10],[4,4],[5,16],[6,5],[7,11],[8,6],[9,11],[10,30],[11,10],[12,13],[13,4],[14,3],[15,3],[16,6]
-             ];
-             var data2 = [
-             [0,1],[1,0],[2,2],[3,0],[4,1],[5,3],[6,1],[7,5],[8,2],[9,3],[10,2],[11,1],[12,0],[13,2],[14,8],[15,0],[16,0]
-             ];
-             $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
-             data1, data2
-             ],
-             {
-             series: {
-             lines: {
-             show: false,
-             fill: true
-             },
-             splines: {
-             show: true,
-             tension: 0.4,
-             lineWidth: 1,
-             fill: 0.4
-             },
-             points: {
-             radius: 0,
-             show: true
-             },
-             shadowSize: 2
-             },
-             grid: {
-             hoverable: true,
-             clickable: true,
-             tickColor: "#d5d5d5",
-             borderWidth: 1,
-             color: '#d5d5d5'
-             },
-             colors: ["#1ab394", "#1C84C6"],
-             xaxis:{
-             },
-             yaxis: {
-             ticks: 4
-             },
-             tooltip: false
-             }
-             );
-             
-             var doughnutData = {
-             labels: ["App","Software","Laptop" ],
-             datasets: [{
-             data: [300,50,100],
-             backgroundColor: ["#a3e1d4","#dedede","#9CC3DA"]
-             }]
-             } ;
-             
-             
-             var doughnutOptions = {
-             responsive: false,
-             legend: {
-             display: false
-             }
-             };
-             
-             
-             var ctx4 = document.getElementById("doughnutChart").getContext("2d");
-             new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
-             
-             var doughnutData = {
-             labels: ["App","Software","Laptop" ],
-             datasets: [{
-             data: [70,27,85],
-             backgroundColor: ["#a3e1d4","#dedede","#9CC3DA"]
-             }]
-             } ;
-             
-             
-             var doughnutOptions = {
-             responsive: false,
-             legend: {
-             display: false
-             }
-             };
-             
-             
-             var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
-             new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
-             
-             });
-             */
-        </script>
     </body>
 </html>
