@@ -36,7 +36,8 @@ if (!isset($_SESSION['loggedin']))
         <div id="wrapper">
 
 
-            <?php $pageNum = 0;
+            <?php
+            $pageNum = 0;
             include 'templates/sideBar.php';
             ?>
 
@@ -56,7 +57,7 @@ if (!isset($_SESSION['loggedin']))
                             <div class="sk-double-bounce1"></div>
                             <div class="sk-double-bounce2"></div>
                         </div>
-                        <form method="post" enctype="multipart/form-data" class="form-horizontal ">
+                        <form method="post" action="api/addProperty.php" enctype="multipart/form-data" class="form-horizontal ">
                             <div class="form-group">
 
                                 <label class="col-sm-2 control-label">Contract Type</label>
@@ -70,15 +71,8 @@ if (!isset($_SESSION['loggedin']))
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Property Type</label>
-                                <div class="col-sm-10"><select class="form-control m-b" name="propertyType">
-                                        <option value="Flat">Flat</option>
-                                        <option value="Shop">Shop</option>
-                                        <option value="Land">Land</option>
-                                        <option value="Villa">Villa</option>
-                                        <option value="Factory">Factory</option>
-                                        <option value="Warehouse">Warehouse</option>
-
+                                <label  class="col-sm-2 control-label">Property Type</label>
+                                <div class="col-sm-10"><select id="propertyTypes" class="form-control m-b" name="propertyType">
 
                                     </select>
                                 </div>
@@ -105,25 +99,20 @@ if (!isset($_SESSION['loggedin']))
                                 <label class="col-sm-2 control-label">Property Location</label>
                                 <div  class="col-sm-2">
                                     <label class="col-sm-offset-4">Country</label>
-                                    <select   class="form-control m-b" name="propertyCountry">
-                                        <option value="Oman">Oman</option>
-                                        <option value="Kuwait">Kuwait</option>
-                                        <option value="UAE">UAE</option>
+                                    <select  id="propertyCountry" class="form-control m-b" name="propertyCountry">
 
                                     </select>
                                 </div>
                                 <div  class="col-sm-2">
                                     <label class="col-sm-offset-4">City</label>
-                                    <select  class="form-control m-b" name="propertyCity">
-                                        <option value="Muscat">Muscat</option>
+                                    <select id="propertyCity"  class="form-control m-b" name="propertyCity">
 
                                     </select>
                                 </div>
                                 <div  class="col-sm-2">
                                     <label class="col-sm-offset-4">Area</label>
-                                    <select  class="form-control m-b" name="propertyAreaLocation">
+                                    <select id="propertyArea" class="form-control m-b" name="propertyAreaLocation">
 
-                                        <option value="Area1">Area1</option>
 
                                     </select>
                                 </div>
@@ -159,6 +148,12 @@ if (!isset($_SESSION['loggedin']))
 
                             <div class="hr-line-dashed"></div>
 
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Arabic Property Description</label>
+                                <div class="col-sm-10"><textarea  name="ar_propertyDescription" required="" style="resize: none"  rows="4" placeholder="e.g., نبذه قصيره عن العقار" class="form-control"></textarea></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
 
 
 
@@ -166,20 +161,11 @@ if (!isset($_SESSION['loggedin']))
                                 <label class="col-sm-2 control-label">Amenities</label>
 
 
-                                <div class="col-sm-10">
-                                    <label> <input name="propertyAmenities[]" type="checkbox" value="Central A\C"> Central A\C </label>
-                                    <label> <input name="propertyAmenities[]" type="checkbox" value="Shared Pool"> Shared Pool </label>
-                                    <label> <input name="propertyAmenities[]" type="checkbox" value="Security"> Security </label>
-                                    <label> <input name="propertyAmenities[]" type="checkbox" value="Balcony"> Balcony </label>
+                                <div id="amenities" class="col-sm-10">
+
 
                                 </div>
-                                <div class="col-sm-10">
-                                    <label> <input type="checkbox" name="propertyAmenities[]" value="Covered Parking"> Covered Parking </label>
-                                    <label> <input type="checkbox" name="propertyAmenities[]" value="Shared Gym"> Shared Gym </label>
-                                    <label> <input type="checkbox" name="propertyAmenities[]" value="Kitchen Appliances"> Kitchen Appliances </label>
-                                    <label> <input type="checkbox" name="propertyAmenities[]" value="Pool View"> Pool View </label>
 
-                                </div>
 
 
                             </div>
@@ -228,15 +214,15 @@ if (!isset($_SESSION['loggedin']))
 
 
                             <div class="hr-line-dashed"></div>
-                          
+
                             <div class="form-group">
-                                
+
                                 <label class="col-sm-2 control-label">Property Pictures</label>
                                 <div class="col-sm-10">
                                     <input name="files[]" type="file" multiple="multiple">
                                 </div>
                             </div>
-                                
+
 
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
@@ -278,17 +264,153 @@ if (!isset($_SESSION['loggedin']))
 
         <script>
 
-            Dropzone.autoDiscover = false;
             jQuery(document).ready(function () {
+                $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
 
-                $("div#my-awesome-dropzone").dropzone({
-                    url: "./img/test",
-                    dictDefaultMessage: "<strong>Drop files here or click to upload. </strong></br>Upload maximum of 10 pictures of property with preferable size of 189*189 pixels and not more than 1MB.",
-                    paramName: 'myFiles'
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getPropertyTypes.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            $('#propertyTypes')
+                                    .append($("<option></option>")
+                                            .attr("value", value.propretyType_id)
+                                            .text(value.propertyType_name + "/" + value.ar_propertyType_name));
+                        });
+
+                        getCities();
+
+                    }
 
                 });
 
+
             });
+
+            function getCities() {
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getCities.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            $('#propertyCity')
+                                    .append($("<option></option>")
+                                            .attr("value", value.city_id)
+                                            .text(value.city_name + "/" + value.ar_city_name));
+                        });
+
+                        getCountries();
+
+                    }
+
+                });
+
+            }
+            function getCountries() {
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getCountries.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            $('#propertyCountry')
+                                    .append($("<option></option>")
+                                            .attr("value", value.country_id)
+                                            .text(value.country_name + "/" + value.ar_country_name));
+                        });
+
+                        getAreas();
+
+                    }
+
+                });
+
+            }
+            function getAreas() {
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getAreas.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            $('#propertyArea')
+                                    .append($("<option></option>")
+                                            .attr("value", value.area_id)
+                                            .text(value.area_name + "/" + value.ar_area_name));
+                        });
+
+                        getAmenities();
+
+                    }
+
+                });
+
+            }
+            function getAmenities() {
+
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getAmenities.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            $('#amenities')
+                                    .append($("<label></label>")
+                                    
+                
+                                    .append($("<input>")
+                                            .attr("value", value.amenity_id)
+                                            .attr("name", "propertyAmenities[]")
+                                            .attr("type","checkbox")
+                                    ).append(" "+value.amenity_name+" ")
+                                    );
+                                       
+                                           
+                         
+                                          
+                        });
+
+                        $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+
+
+                    }
+
+                });
+
+
+
+
+
+
+
+            }
 
             $(document).ready(function () {
                 toggleFields(); // call this first so we start out with the correct visibility depending on the selected form values
@@ -305,35 +427,30 @@ if (!isset($_SESSION['loggedin']))
                 else
                     $("#addOwner").hide();
             }
-            $('form').submit(function(){
-               
-                var formData = new FormData($(this)[0]);
-                 
-                $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
-                $.ajax({
-
-                    type: "POST",
-                    cache: false,
-                    url: $(this).attr('action'),
-                    data: formData,
-                    success: function (data) {
-                        
-                        $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
-                        
-                    }
-
-                });
-
-
-
-
+//            $('form').submit(function () {
+//
+//                var formData = new FormData($(this)[0]);
+//
+//                $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+//                $.ajax({
+//
+//                    type: "POST",
+//                    cache: false,
+//                    url: $(this).attr('action'),
+//                    data: formData,
+//                    success: function (data) {
+//
+//                        $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+//
+//                    }
+//
+//                });
+//
+//            });
 
 
-            });
-            
-            
-            
-       
+
+
 
         </script>
 

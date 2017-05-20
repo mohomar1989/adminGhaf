@@ -13,10 +13,25 @@ $tmp=array();
 
 
 
+$assocRows = array();
 
+if(isset($_GET['asAssoc']))
+{
+    while($row = mysqli_fetch_assoc($result)){
+   $assocRows[] = $row;
+    }
+    
+    echo json_encode($assocRows,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+
+}
+else
+{
 while($row = mysqli_fetch_assoc($result)){
    $tmp[] = array_values($row);
-    
 }
+   
+
 $rows->data=$tmp;
+
 echo json_encode($rows,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
