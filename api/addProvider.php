@@ -10,7 +10,7 @@ $fileName = $_FILES['provider_logo']['name'];
 $fileName = uniqid().$fileName;
 $tempNAme = $_FILES['provider_logo']['tmp_name'];
 move_uploaded_file($tempNAme, "../uploads/".$fileName);
-$logo_url = "http://admin.ghafoman.net/uploads/"+$fileName;
+$logo_url = "http://admin.ghafoman.net/uploads/".$fileName;
         
 
 
