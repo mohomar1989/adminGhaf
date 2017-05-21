@@ -28,6 +28,7 @@ $dbName = "m3z8z9h6_ghafoman";
 
 // Create connection
 $link = mysqli_connect($servername, $username, $password,$dbName);
+mysqli_set_charset($link, "utf-8");
 $query = "INSERT INTO"
         . " Property "
         . "("
