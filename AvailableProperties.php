@@ -53,7 +53,7 @@ if (!isset($_SESSION['loggedin']))
                         <table style="font-size: 12px;" id="propertyTable" width="100%" class="table table-striped table-bordered table-hover" >
                             <thead >
                                 <tr>
-                                    <th></th>
+                                    <th>Id</th>
                                     <th>Reference</th>
                                     <th>Contract Type</th>
                                     <th>Property Type</th>
