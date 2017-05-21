@@ -135,7 +135,7 @@
                         echo 'class="active"';
                     }
                     ?>>
-                        <a href="AddProperty.php"><i class="fa fa-building"></i> <span class="nav-label">Available Properties </span></a>
+                        <a href="AvailableProperties.php"><i class="fa fa-building"></i> <span class="nav-label">Available Properties </span></a>
                     </li>
 
                     <li <?php

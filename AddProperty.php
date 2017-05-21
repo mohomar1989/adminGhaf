@@ -174,7 +174,7 @@ if (!isset($_SESSION['loggedin']))
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Location latitude</label>
-                                <div class="col-sm-10"><input required="" name="propertyLatitude" placeholder="e.g., 21.421342" type="number" class="form-control"></div>
+                                <div class="col-sm-10"><input required="" step="any" name="propertyLatitude" placeholder="e.g., 21.421342" type="number" class="form-control"></div>
 
                                 <br>
                                 <br>
@@ -183,7 +183,7 @@ if (!isset($_SESSION['loggedin']))
 
 
                                 <label class="col-sm-2 control-label">Location longitude</label>
-                                <div class="col-sm-10"><input required="" name="propertyLongitude" placeholder="e.g., 19.42321" type="number" class="form-control"></div>
+                                <div class="col-sm-10"><input required="" step="any" name="propertyLongitude" placeholder="e.g., 19.42321" type="number" class="form-control"></div>
 
                             </div>
 
@@ -271,6 +271,21 @@ if (!isset($_SESSION['loggedin']))
 
         <script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             jQuery(document).ready(function () {
 
                 $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
@@ -278,6 +293,7 @@ if (!isset($_SESSION['loggedin']))
                 $.ajax({
                     dataType: "json",
 
+                    
                     type: "GET",
                     cache: false,
                     data: {"asAssoc": 1},
@@ -488,7 +504,7 @@ if (!isset($_SESSION['loggedin']))
 
                 e.preventDefault(); // prevent native submit
                 $(this).ajaxSubmit({
-                    //resetForm: true,
+                    resetForm: true,
                     success: function () {
                         $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
                         swal({

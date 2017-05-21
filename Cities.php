@@ -77,7 +77,8 @@ if (!isset($_SESSION['loggedin']))
                 </div>
                 <div class="ibox">
                     <div class="ibox-content">
-                        <table id="cityTable" class="table table-striped table-bordered table-hover" >
+                        <div class="table-responsive">
+                        <table id="cityTable" width="100%" class="table table-striped table-bordered table-hover" >
                             <thead>
                                 <tr>
                                     <th>City Id</th>
@@ -88,6 +89,7 @@ if (!isset($_SESSION['loggedin']))
                                 </tr>
                             </thead>
                         </table>
+                        </div>
 
                     </div>
                 </div>

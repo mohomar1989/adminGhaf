@@ -23,7 +23,7 @@ if (!isset($_SESSION['loggedin']))
         <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-       <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+        <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
         <link href="css/plugins/codemirror/codemirror.css" rel="stylesheet">
         <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 
@@ -35,14 +35,14 @@ if (!isset($_SESSION['loggedin']))
 
             <!-- Side bar menu -->
             <?php
-            $pageNum = 12;
+            $pageNum = 9;
             include 'templates/sideBar.php'
             ?>
 
 
             <div id="page-wrapper" class="gray-bg dashbard-1">
                 <?php
-                $trackerPageName = "Owners";
+                $trackerPageName = "Available Properties";
                 include 'templates/navigationTrack.php'
                 ?>
 
@@ -50,20 +50,32 @@ if (!isset($_SESSION['loggedin']))
                 <div class="ibox">
                     <div class="ibox-content">
                         <div class="table-responsive">
-                        <table id="ownerTable" width="100%" class="table table-striped table-bordered table-hover" >
-                            <thead>
+                        <table style="font-size: 12px;" id="propertyTable" width="100%" class="table table-striped table-bordered table-hover" >
+                            <thead >
                                 <tr>
-                                    <th>Owner ID</th>
-                                    <th>Owner First Name</th>
-                                    <th>Owner Last Name</th>
-                                    <th>Owner Number</th>
-                                    <th>Owner Email</th>
-                                    <th>Owner Username</th>
+                                    <th></th>
+                                    <th>Reference</th>
+                                    <th>Contract Type</th>
+                                    <th>Property Type</th>
+                                    <th>Description</th>
+                                    <th>Arabic Description</th>
+                                    <th>Price</th>
+                                    <th>Area</th>
+                                    <th>Beds</th>
+                                    <th>Baths</th>
+                                    <th>Country</th>
+                                    <th>City</th>
+                                    <th>Area Location</th>
+                                    <th>GeoLocation</th>
+                                    <th>Owner</th>
+                                    <th>Provider</th>
+                                    <th>360 view link</th>
                                     <th>Edit/Delete</th>
                                 </tr>
                             </thead>
                         </table>
                         </div>
+
                     </div>
                 </div>
 
@@ -163,11 +175,11 @@ if (!isset($_SESSION['loggedin']))
         <script>
 
             $(document).ready(function () {
-                $('#ownerTable').DataTable({
+                var table=$('#propertyTable').DataTable({
                     searching: false,
-                    "ajax": "api/getOwners.php",
+                    "ajax": "api/getProperties.php",
                     "columnDefs": [{
-                            "targets": 6,
+                            "targets": 17,
                             "width": "10%",
 
                             "render": function (data, type, row) {
@@ -199,7 +211,7 @@ if (!isset($_SESSION['loggedin']))
                         url: "api/delete.php", // replace 'PHP-FILE.php with your php file
 
 
-                        data: {"id": id, "table": "Owner", "col": "owner_id"},
+                        data: {"id": id, "table": "Property", "col": "property_id"},
                         success: function () {
 
                             location.reload();
