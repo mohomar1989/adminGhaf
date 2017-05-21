@@ -30,6 +30,8 @@ $query = "UPDATE Provider SET"
         . " WHERE provider_id = $id";
 }
 $link = mysqli_connect($servername, $username, $password,$dbName);
+mysqli_query($link,"SET NAMES 'utf8'");
+mysqli_query($link,"SET CHARACTER SET utf8");
 mysqli_query($link, $query);
 if($link != null)
 mysqli_close($link);

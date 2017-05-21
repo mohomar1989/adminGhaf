@@ -19,6 +19,8 @@ $owner_password = $_POST['owner_password'];
 
 
 $link = mysqli_connect($servername, $username, $password, $dbName);
+mysqli_query($link,"SET NAMES 'utf8'");
+mysqli_query($link,"SET CHARACTER SET utf8");
 $query = "INSERT"
         . " INTO Owner"
         . " (owner_id, "

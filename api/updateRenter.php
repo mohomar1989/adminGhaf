@@ -26,6 +26,8 @@ $id = $_POST['renter_id'];
 
 // Create connection
 $link = mysqli_connect($servername, $username, $password,$dbName);
+mysqli_query($link,"SET NAMES 'utf8'");
+mysqli_query($link,"SET CHARACTER SET utf8");
 $query = "UPDATE Renter SET"
         . " renter_first_name = '$renter_first_name' ,"
         . " renter_last_name ='$renter_last_name' ,"

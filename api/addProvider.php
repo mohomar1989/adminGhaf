@@ -18,6 +18,8 @@ $logo_url = "http://admin.ghafoman.net/uploads/".$fileName;
 
 
 $link = mysqli_connect($servername, $username, $password, $dbName);
+mysqli_query($link,"SET NAMES 'utf8'");
+mysqli_query($link,"SET CHARACTER SET utf8");
 $query = "INSERT"
         . " INTO Provider"
         . " (provider_id, "

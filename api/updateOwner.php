@@ -26,6 +26,8 @@ $id = $_POST['owner_id'];
 
 // Create connection
 $link = mysqli_connect($servername, $username, $password,$dbName);
+mysqli_query($link,"SET NAMES 'utf8'");
+mysqli_query($link,"SET CHARACTER SET utf8");
 $query = "UPDATE Owner SET"
         . " owner_first_name = '$owner_first_name' ,"
         . " owner_last_name ='$owner_last_name' ,"

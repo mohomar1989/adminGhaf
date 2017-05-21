@@ -16,6 +16,8 @@ $dbName = "m3z8z9h6_ghafoman";
 
 // Create connection
 $link = mysqli_connect($servername, $username, $password,$dbName);
+mysqli_query($link,"SET NAMES 'utf8'");
+mysqli_query($link,"SET CHARACTER SET utf8");
 $query = "INSERT INTO PropertyType (propertyType_id, propertyType_name, ar_propertyType_name) VALUES (NULL, '$countryEn', '$countryAr')";
 mysqli_query($link, $query);
 if($link != null)
