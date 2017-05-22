@@ -223,7 +223,7 @@ if (!isset($_SESSION['loggedin']))
 
                                 <label class="col-sm-2 control-label">Property Pictures</label>
                                 <div class="col-sm-10">
-                                    <input name="propertyImages[]" type="file" multiple="multiple">
+                                    <input name="propertyImages[]" required="required" type="file" multiple="multiple">
                                 </div>
                             </div>
 
