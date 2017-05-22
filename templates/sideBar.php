@@ -138,13 +138,8 @@
                         <a href="AvailableProperties.php"><i class="fa fa-building"></i> <span class="nav-label">Available Properties </span></a>
                     </li>
 
-                    <li <?php
-                    if ($pageNum == 10) {
-                        echo 'class="active"';
-                    }
-                    ?>>
-                        <a href="AddOwner.php"><i class="fa fa-user"></i> <span class="nav-label">Rented Properties</span></a>
-                    </li>
+                    
+                 
                   
                      <li <?php
                     if ($pageNum == 12) {
