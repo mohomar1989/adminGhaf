@@ -145,14 +145,7 @@
                     ?>>
                         <a href="AddOwner.php"><i class="fa fa-user"></i> <span class="nav-label">Rented Properties</span></a>
                     </li>
-                    <li <?php
-                    if ($pageNum == 11) {
-                        echo 'class="active"';
-                    }
-                    ?>>
-                        <a  href="AddRenter.php"><i class="fa fa-user"></i> <span class="nav-label">Sold Properties </span></a>
-                    </li>
-                   
+                  
                      <li <?php
                     if ($pageNum == 12) {
                         echo 'class="active"';
