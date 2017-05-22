@@ -474,6 +474,11 @@ if (!isset($_SESSION['loggedin']))
                                             .attr("value", value.owner_id)
                                             .text(value.owner_first_name + " " + value.owner_last_name));
                         });
+                        $('#ownersSelect')
+                                    .append($("<option></option>")
+                                            .attr("selected","selected")
+                                            .attr("value","NULL"));
+                       
 
                         $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
                         toggleFields(); // call this first so we start out with the correct visibility depending on the selected form values
