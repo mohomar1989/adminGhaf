@@ -17,7 +17,7 @@ $propertyLatitude = $_POST['propertyLatitude'];
 $propertyLongitude = $_POST['propertyLongitude'];
 $propertyProvider = $_POST['propertyProvider'];
 $propertyOwner = isset($_POST['propertyOwner']) ? $_POST['propertyOwner'] : "NULL";
-$property360Link = $_POST['property360'];
+$property360Link = isset($_POST['property360']) ? $_POST['property360'] : "NULL";
 
 $servername = "108.167.157.196";
 $username = "m3z8z9h6_admin";
