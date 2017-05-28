@@ -84,7 +84,7 @@ if (!isset($_SESSION['loggedin']))
 
         </div>
         <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content animated bounceInRight">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -92,7 +92,7 @@ if (!isset($_SESSION['loggedin']))
                     </div>
                     <div class="modal-body">
 
-                        <form method="post" action="api/addProperty.php" enctype="multipart/form-data" class="form-horizontal ">
+                        <form id="myform" method="post" action="api/addProperty.php" enctype="multipart/form-data" class="form-horizontal ">
                             <div class="form-group">
 
                                 <label class="col-sm-2 control-label">Contract Type</label>
@@ -357,6 +357,17 @@ if (!isset($_SESSION['loggedin']))
 
                 // $("#property_beds").val("");
 
+                $('#myform').each(function () {
+                    this.reset();
+
+                });
+                $('#propertyType_name').empty();
+                $('#city_name').empty();
+                $('#area_name').empty();
+                $('#country_name').empty();
+                $('#provider_name').empty();
+                $('#owner_name').empty();
+                $('#amenities').empty();
 
 
                 $.ajax({
@@ -368,10 +379,10 @@ if (!isset($_SESSION['loggedin']))
                     success: function (data) {
 
                         $("#property_beds").val(data[0].property_beds);
-                     
-                       $("#property_reference").val(data[0].property_reference);
+
+                        $("#property_reference").val(data[0].property_reference);
                         $("#property_price").val(data[0].property_price);
-                    
+
                         $("#property_area").val(data[0].property_area);
                         $("#property_description").val(data[0].property_description);
                         $("#ar_property_description").val(data[0].ar_property_description);
@@ -379,8 +390,15 @@ if (!isset($_SESSION['loggedin']))
                         $("#property_geolocation_long").val(data[0].property_long);
                         $("#owner_first_name").val(data[0].owner_first_name);
                         $("#property_360view").val(data[0].property_360view);
-                        
+
                         $("#property_baths").val(data[0].property_baths);
+                        getPropertyTypes(data[0].property_type);
+                        getCities(data[0].property_city);
+                        getCountries(data[0].property_country);
+                        getAreas(data[0].proprety_area);
+                        getProviders(data[0].property_proivder);
+                        getOwners(data[0].property_owner);
+                        getAmenities(data[0].property_amenities);
 
 
 
@@ -390,6 +408,271 @@ if (!isset($_SESSION['loggedin']))
                     }
                 });
             }
+            function getPropertyTypes(id) {
+
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getPropertyTypes.php",
+
+                    success: function (data) {
+
+
+                        $.each(data, function (key, value) {
+                            if (value.propertyType_id == id)
+                                $('#propertyType_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.propertyType_id)
+                                                .attr("selected", "selected")
+                                                .text(value.propertyType_name + "/" + value.ar_propertyType_name));
+
+
+                            else
+                                $('#propertyType_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.propertyType_id)
+                                                .text(value.propertyType_name + "/" + value.ar_propertyType_name));
+                        });
+
+                        // getCities();
+
+                    }
+
+                });
+            }
+            function getCities(id) {
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getCities.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            if (value.city_id == id)
+                                $('#city_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.city_id)
+                                                .attr("selected", "selected")
+                                                .text(value.city_name + "/" + value.ar_city_name));
+                            else
+                                $('#city_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.city_id)
+                                                .text(value.city_name + "/" + value.ar_city_name));
+
+                        });
+
+
+
+                    }
+
+                });
+
+            }
+            function getCountries(id) {
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getCountries.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            if (value.country_id == id)
+                                $('#country_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.country_id)
+                                                .attr("selected", "selected")
+                                                .text(value.country_name + "/" + value.ar_country_name));
+                            else
+                                $('#country_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.country_id)
+                                                .text(value.country_name + "/" + value.ar_country_name));
+                        });
+
+
+                    }
+
+                });
+
+            }
+            function getAreas(id) {
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getAreas.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            if (value.area_id == id)
+                                $('#area_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.area_id)
+                                                .attr("selected", "selected")
+                                                .text(value.area_name + "/" + value.ar_area_name));
+                            else
+                                $('#area_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.area_id)
+                                                .text(value.area_name + "/" + value.ar_area_name));
+                        });
+
+
+
+                    }
+
+                });
+
+            }
+            function getAmenities(ids) {
+
+
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getAmenities.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            if ($.inArray(value.amenity_id, ids)>-1)
+                                $('#amenities')
+                                        .append($("<label></label>")
+                                                .append($("<input>")
+                                                        .attr("value", value.amenity_id)
+                                                        .attr("name", "propertyAmenities[]")
+                                                        .attr("type", "checkbox")
+                                                        .attr("checked", "checked")
+                                                        ).append(" " + value.amenity_name + " ")
+                                                );
+                            else
+                                $('#amenities')
+                                        .append($("<label></label>")
+                                                .append($("<input>")
+                                                        .attr("value", value.amenity_id)
+                                                        .attr("name", "propertyAmenities[]")
+                                                        .attr("type", "checkbox")
+                                                      
+                                                        ).append(" " + value.amenity_name + " ")
+                                                );
+
+
+
+
+                        });
+
+
+                        getProviders();
+
+                    }
+
+                });
+
+
+            }
+            function getProviders(id) {
+
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getProviders.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            if (value.provider_id == id)
+                                $('#provider_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.provider_id)
+                                                .attr("selected", "selected")
+                                                .text(value.provider_name));
+                            else
+                                $('#provider_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.provider_id)
+                                                .text(value.provider_name));
+                        });
+
+
+
+                    }
+
+                });
+
+            }
+            function getOwners(id) {
+
+                $.ajax({
+                    dataType: "json",
+
+                    type: "GET",
+                    cache: false,
+                    data: {"asAssoc": 1},
+                    url: "api/getOwners.php",
+
+                    success: function (data) {
+
+                        $.each(data, function (key, value) {
+                            if (value.owner_id == id)
+                                $('#owner_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.owner_id)
+                                                .attr("selected", "selected")
+                                                .text(value.owner_first_name + " " + value.owner_last_name));
+
+                            else
+                                $('#owner_name')
+                                        .append($("<option></option>")
+                                                .attr("value", value.owner_id)
+                                                .text(value.owner_first_name + " " + value.owner_last_name));
+
+
+
+
+
+                            $('#owner_name')
+                                    .append($("<option></option>")
+
+                                            .attr("value", "NULL"));
+                        });
+
+
+                        //  $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+//                        toggleFields(); // call this first so we start out with the correct visibility depending on the selected form values
+//                        // this will call our toggleFields function every time the selection value of our other field changes
+//                        $("#providersSelect").change(function () {
+//                            toggleFields();
+//                        });
+
+
+                    }
+
+                });
+            }
+
+
+
 
         </script>
 

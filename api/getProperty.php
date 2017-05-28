@@ -10,20 +10,21 @@ $id = $_GET['id'];
 $query = "select property_id, 
     property_reference, 
     property_contract,
-    propertyType_name,
+    property_type,
     property_description, 
     ar_property_description, 
     property_price,
     property_area, 
     property_beds, 
     property_baths, 
-    country_name, 
-    city_name,
-    area_name,
+    property_country, 
+    property_city,
+    property_area,
     property_geolocation, 
-    owner_first_name, 
-    provider_name,
-    property_360view
+    property_owner, 
+    property_provider,
+    property_360view,
+    group_concat(amenity_name) as property_amenities
 
 From Property
 
@@ -35,8 +36,9 @@ left join City  on city_id = property_city
 left join Owner  on owner_id = property_owner
 left join Provider  on provider_id = property_provider
 Left join PropertyType  on propertyType_id = property_type
+left join Property_Amenity on amenity_property = property_id
 
-where  property_id=$id";
+where  property_id=$id group by property_id ";
 $result = mysqli_query($link, $query);
 
 $rows=array();
@@ -46,6 +48,7 @@ $rows=array();
 
 while($row = mysqli_fetch_assoc($result)){
    
+    $row['property_amenities']= explode(",", $row['property_amenities']);
     $row['property_lat'] = explode(",", $row['property_geolocation'])[0];
     $row['property_long'] = explode(",", $row['property_geolocation'])[1];
 
