@@ -580,7 +580,7 @@ if (!isset($_SESSION['loggedin']))
                         });
 
 
-                        getProviders();
+                       // getProviders();
 
                     }
 
