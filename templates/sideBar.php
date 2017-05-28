@@ -20,6 +20,7 @@
             <li <?php
                     switch($pageNum){
                         case 0:
+                        case 20:
                         case 1:
                         case 2:
                         case 3:echo 'class="active"';break;
@@ -58,6 +59,14 @@
                     ?>>
                         <a href="AddProvider.php"><i class="fa fa-building-o"></i> <span class="nav-label">Add Provider </span></a>
                     </li>
+                     <li <?php
+                    if ($pageNum == 20) {
+                        echo 'class="active"';
+                    }
+                    ?>>
+                        <a href="RentProperty.php"><i class="fa fa-building"></i> <span class="nav-label">Rent a property </span></a>
+                    </li>
+
                 </ul>
             </li>
             
