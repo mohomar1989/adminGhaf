@@ -22,8 +22,6 @@ $id = $_POST['propertyId'];
 
 
 $propertygeo = $propertyLatitude.",".$propertyLongitude;
-
-echo $id;
 $servername = "108.167.157.196";
 $username = "m3z8z9h6_admin";
 $password = "Intheend13!";
@@ -52,7 +50,6 @@ $query = "UPDATE Property SET"
         . " property_price = '$propertyPrice'"
         . " WHERE property_id = $id";
 
-echo $query;
 mysqli_query($link, $query);
 if ($link != null)
     mysqli_close($link);
