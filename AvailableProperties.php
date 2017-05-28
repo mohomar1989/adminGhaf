@@ -358,7 +358,7 @@ if (!isset($_SESSION['loggedin']))
                 $('#area_name').empty();
                 $('#country_name').empty();
                 $('#provider_name').empty();
-                $('#owner_name').empty();
+                $('#owner_first_name').empty();
                 $('#amenities').empty();
                 $('#propertyId').val(id);
 
@@ -651,20 +651,22 @@ if (!isset($_SESSION['loggedin']))
 
 
                         });
-                        if (id == "NULL")
+                        if (id != "NULL")
                             $('#owner_first_name')
                                     .append($("<option></option>")
-                                            .attr("selected", "selected")
+
+
 
                                             .attr("value", "NULL"));
                         else
                             $('#owner_first_name')
                                     .append($("<option></option>")
-                                            .attr("selected", "selected")
 
+
+                                            .attr("selected", "selected")
                                             .attr("value", "NULL"));
 
-               
+
 
                     }
 
