@@ -90,6 +90,13 @@ if (!isset($_SESSION['loggedin']))
                             </div>
 
                             <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Mobile #</label>
+                                <div class="col-sm-10"><input required=""  name="owner_national_number" placeholder="e.g., 00971727261521" type="number" class="form-control"></div>
+
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Username</label>

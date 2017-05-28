@@ -92,7 +92,7 @@ if (!isset($_SESSION['loggedin']))
                     </div>
                     <div class="modal-body">
 
-                        <form id="myform" method="post" action="api/addProperty.php" enctype="multipart/form-data" class="form-horizontal ">
+                        <form id="myform" method="post" action="api/updateProperty.php"  class="form-horizontal ">
                             <div class="form-group">
 
                                 <label class="col-sm-2 control-label">Contract Type</label>
@@ -104,6 +104,7 @@ if (!isset($_SESSION['loggedin']))
                                 </div>
 
                             </div>
+                            <input hidden="true" name="propertyId" id="propertyId" value="">
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <label  class="col-sm-2 control-label">Property Type</label>
@@ -251,15 +252,6 @@ if (!isset($_SESSION['loggedin']))
                                 <div class="col-sm-10 "><input name="property360" id="property_360view"  placeholder="e.g., Url of the 360 image" type="text" class="form-control"></div>
                             </div>
 
-                            <div class="hr-line-dashed"></div>
-
-                            <div class="form-group">
-
-                                <label class="col-sm-2 control-label">Property Pictures</label>
-                                <div class="col-sm-10">
-                                    <input name="propertyImages[]" id="property_images" required="required" type="file" multiple="multiple">
-                                </div>
-                            </div>
 
 
                             <div class="hr-line-dashed"></div>
@@ -368,6 +360,7 @@ if (!isset($_SESSION['loggedin']))
                 $('#provider_name').empty();
                 $('#owner_name').empty();
                 $('#amenities').empty();
+                $('#propertyId').val(id);
 
 
                 $.ajax({
@@ -437,7 +430,6 @@ if (!isset($_SESSION['loggedin']))
                                                 .text(value.propertyType_name + "/" + value.ar_propertyType_name));
                         });
 
-                        // getCities();
 
                     }
 
@@ -553,7 +545,7 @@ if (!isset($_SESSION['loggedin']))
                     success: function (data) {
 
                         $.each(data, function (key, value) {
-                            if ($.inArray(value.amenity_id, ids)>-1)
+                            if ($.inArray(value.amenity_id, ids) > -1)
                                 $('#amenities')
                                         .append($("<label></label>")
                                                 .append($("<input>")
@@ -570,7 +562,7 @@ if (!isset($_SESSION['loggedin']))
                                                         .attr("value", value.amenity_id)
                                                         .attr("name", "propertyAmenities[]")
                                                         .attr("type", "checkbox")
-                                                      
+
                                                         ).append(" " + value.amenity_name + " ")
                                                 );
 
@@ -580,7 +572,7 @@ if (!isset($_SESSION['loggedin']))
                         });
 
 
-                       // getProviders();
+                        // getProviders();
 
                     }
 
@@ -634,15 +626,21 @@ if (!isset($_SESSION['loggedin']))
                     success: function (data) {
 
                         $.each(data, function (key, value) {
+
+
+                            id = id == null ? "NULL" : id;
+
+
+
                             if (value.owner_id == id)
-                                $('#owner_name')
+                                $('#owner_first_name')
                                         .append($("<option></option>")
                                                 .attr("value", value.owner_id)
                                                 .attr("selected", "selected")
                                                 .text(value.owner_first_name + " " + value.owner_last_name));
 
                             else
-                                $('#owner_name')
+                                $('#owner_first_name')
                                         .append($("<option></option>")
                                                 .attr("value", value.owner_id)
                                                 .text(value.owner_first_name + " " + value.owner_last_name));
@@ -651,20 +649,22 @@ if (!isset($_SESSION['loggedin']))
 
 
 
-                            $('#owner_name')
+
+                        });
+                        if (id == "NULL")
+                            $('#owner_first_name')
                                     .append($("<option></option>")
+                                            .attr("selected", "selected")
 
                                             .attr("value", "NULL"));
-                        });
+                        else
+                            $('#owner_first_name')
+                                    .append($("<option></option>")
+                                            .attr("selected", "selected")
 
+                                            .attr("value", "NULL"));
 
-                        //  $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
-//                        toggleFields(); // call this first so we start out with the correct visibility depending on the selected form values
-//                        // this will call our toggleFields function every time the selection value of our other field changes
-//                        $("#providersSelect").change(function () {
-//                            toggleFields();
-//                        });
-
+               
 
                     }
 

@@ -1,10 +1,6 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 
 
@@ -19,6 +15,7 @@ $owner_email = $_POST['owner_email'];
 $owner_username = $_POST['owner_username'];
 $owner_number = $_POST['owner_number'];
 $owner_password = $_POST['owner_password'];
+$owner_national_id = $_POST['owner_national_id'];
 $id = $_POST['owner_id'];
 
 
@@ -34,8 +31,10 @@ $query = "UPDATE Owner SET"
         . " owner_email = '$owner_email' ,"
         . " owner_number = '$owner_number',"
         . " owner_username = '$owner_username',"
+        . " owner_national_id = '$owner_national_id',"
         . " owner_password = '$owner_password'"
         . " WHERE owner_id = $id";
+
 mysqli_query($link, $query);
 if($link != null)
 mysqli_close($link);

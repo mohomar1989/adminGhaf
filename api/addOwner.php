@@ -11,6 +11,7 @@ $owner_number = $_POST['owner_number'];
 $owner_email = $_POST['owner_email'];
 $owner_username = $_POST['owner_username'];
 $owner_password = $_POST['owner_password'];
+$owner_national_id = $_POST['owner_national_id'];
 
 
 
@@ -29,8 +30,9 @@ $query = "INSERT"
         . " owner_email, "
         . "owner_number, "
         . "owner_username,"
+        . "owner_national_id"
         . " owner_password) "
-        . "VALUES (NULL, '$owner_first_name', '$owner_last_name', '$owner_email', '$owner_number', '$owner_username', '$owner_password')";
+        . "VALUES (NULL, '$owner_first_name', '$owner_last_name', '$owner_email', '$owner_number', '$owner_username','$owner_national_id', '$owner_password')";
 
 mysqli_query($link, $query);
 if ($link != null) {

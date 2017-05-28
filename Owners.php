@@ -23,7 +23,7 @@ if (!isset($_SESSION['loggedin']))
         <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
         <link href="css/animate.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-       <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+        <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
         <link href="css/plugins/codemirror/codemirror.css" rel="stylesheet">
         <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 
@@ -50,19 +50,20 @@ if (!isset($_SESSION['loggedin']))
                 <div class="ibox">
                     <div class="ibox-content">
                         <div class="table-responsive">
-                        <table id="ownerTable" width="100%" class="table table-striped table-bordered table-hover" >
-                            <thead>
-                                <tr>
-                                    <th>Owner ID</th>
-                                    <th>Owner First Name</th>
-                                    <th>Owner Last Name</th>
-                                    <th>Owner Number</th>
-                                    <th>Owner Email</th>
-                                    <th>Owner Username</th>
-                                    <th>Edit/Delete</th>
-                                </tr>
-                            </thead>
-                        </table>
+                            <table id="ownerTable" width="100%" class="table table-striped table-bordered table-hover" >
+                                <thead>
+                                    <tr>
+                                        <th>Owner ID</th>
+                                        <th>Owner First Name</th>
+                                        <th>Owner Last Name</th>
+                                        <th>Owner Number</th>
+                                        <th>Owner Email</th>
+                                        <th>Owner Username</th>
+                                        <th>Owner National Id</th>
+                                        <th>Edit/Delete</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -110,12 +111,23 @@ if (!isset($_SESSION['loggedin']))
 
                             </div>
                             <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Owner National Id</label>
+                                <div class="col-sm-10"><input id="owner_national_id" required=""   name="owner_national_id"  type="text" class="form-control"></div>
+
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Owner Username</label>
                                 <div class="col-sm-10"><input id="owner_username" required=""   name="owner_username"  type="text" class="form-control"></div>
 
                             </div>
                             <div class="hr-line-dashed"></div>
+
+
+
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Owner Password</label>
                                 <div class="col-sm-10"><input id="owner_password" required=""   name="owner_password"  type="text" class="form-control"></div>
@@ -167,7 +179,7 @@ if (!isset($_SESSION['loggedin']))
                     searching: false,
                     "ajax": "api/getOwners.php",
                     "columnDefs": [{
-                            "targets": 6,
+                            "targets": 7,
                             "width": "10%",
 
                             "render": function (data, type, row) {
@@ -219,6 +231,7 @@ if (!isset($_SESSION['loggedin']))
                 $('#owner_username').val("");
                 $('#owner_password').val("");
                 $('#owner_id').val("");
+                $('#owner_national_id').val("");
 
                 $.ajax({
                     type: "GET",
@@ -236,6 +249,8 @@ if (!isset($_SESSION['loggedin']))
                         $('#owner_username').val(data[0]["owner_username"]);
                         $('#owner_password').val(data[0]["owner_password"]);
                         $('#owner_id').val(data[0]["owner_id"]);
+                        $('#owner_national_id').val(data[0]["owner_national_id"]);
+
 
 
 
