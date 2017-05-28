@@ -78,7 +78,7 @@ if (!isset($_SESSION['loggedin']))
                             <div class="form-group">
                                 <label  class="col-sm-2 control-label">Enter building number</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="building_number" required="" placeholder="213" class="form-control">
+                                    <input type="text" name="building_number" required placeholder="213" class="form-control">
                                 </div>
 
                             </div>
@@ -265,12 +265,17 @@ if (!isset($_SESSION['loggedin']))
         <script src="js/jquery.form.min.js"></script>
         <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
         <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="js/plugins/validate/jquery.validate.min.js"></script>
 
         <script>
 
 
             $(document).ready(function () {
 
+
+  $("myform").validate({
+                
+             });
 
                 $.ajax({
                     dataType: "json",

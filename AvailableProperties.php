@@ -183,7 +183,7 @@ if (!isset($_SESSION['loggedin']))
                             "width": "10%",
 
                             "render": function (data, type, row) {
-                                return '<button type="button" onclick="getOwner(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>'
+                                return '<button type="button" onclick="getProperty(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>'
                                         + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
                                         ;
                             }
@@ -223,31 +223,18 @@ if (!isset($_SESSION['loggedin']))
 
                 });
             }
-            function getOwner(id) {
-                $('#owner_first_name').val("");
-                $('#owner_last_name').val("");
-                $('#owner_email').val("");
-                $('#owner_number').val("");
-                $('#owner_username').val("");
-                $('#owner_password').val("");
-                $('#owner_id').val("");
+            function getProperty(id) {
+             
 
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: "api/getEntry.php", // replace 'PHP-FILE.php with your php file
-                    data: {"id": id, "pk": "owner_id", "table": "Owner"},
+                    url: "api/getProperty.php",
+                    data: {"id": id},
 
                     success: function (data) {
-                        // window.alert(data[0]["ar_amenity_name"]);
-
-                        $('#owner_first_name').val(data[0]["owner_first_name"]);
-                        $('#owner_last_name').val(data[0]["owner_last_name"]);
-                        $('#owner_email').val(data[0]["owner_email"]);
-                        $('#owner_number').val(data[0]["owner_number"]);
-                        $('#owner_username').val(data[0]["owner_username"]);
-                        $('#owner_password').val(data[0]["owner_password"]);
-                        $('#owner_id').val(data[0]["owner_id"]);
+                       
+                       
 
 
 
