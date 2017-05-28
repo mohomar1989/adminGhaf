@@ -7,7 +7,23 @@ $dbName = "m3z8z9h6_ghafoman";
 $link = mysqli_connect($servername, $username, $password,$dbName);
 mysqli_set_charset($link, "utf8");
 $id = $_GET['id'];
-$query = "select property_id, property_reference, property_contract, propertyType_name, property_description, ar_property_description, property_price, property_area, property_beds, property_baths, country_name, city_name, area_name, property_geolocation, owner_first_name, provider_name, property_360view
+$query = "select property_id, 
+    property_reference, 
+    property_contract,
+    propertyType_name,
+    property_description, 
+    ar_property_description, 
+    property_price,
+    property_area, 
+    property_beds, 
+    property_baths, 
+    country_name, 
+    city_name,
+    area_name,
+    property_geolocation, 
+    owner_first_name, 
+    provider_name,
+    property_360view
 
 From Property
 
@@ -30,6 +46,10 @@ $rows=array();
 
 while($row = mysqli_fetch_assoc($result)){
    
+    $row['property_lat'] = explode(",", $row['property_geolocation'])[0];
+    $row['property_long'] = explode(",", $row['property_geolocation'])[1];
+
+    
     $rows [] = $row;
 }
 

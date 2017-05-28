@@ -50,30 +50,30 @@ if (!isset($_SESSION['loggedin']))
                 <div class="ibox">
                     <div class="ibox-content">
                         <div class="table-responsive">
-                        <table style="font-size: 12px;" id="propertyTable" width="100%" class="table table-striped table-bordered table-hover" >
-                            <thead >
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Reference</th>
-                                    <th>Contract Type</th>
-                                    <th>Property Type</th>
-                                    <th>Description</th>
-                                    <th>Arabic Description</th>
-                                    <th>Price</th>
-                                    <th>Area</th>
-                                    <th>Beds</th>
-                                    <th>Baths</th>
-                                    <th>Country</th>
-                                    <th>City</th>
-                                    <th>Area Location</th>
-                                    <th>GeoLocation</th>
-                                    <th>Owner</th>
-                                    <th>Provider</th>
-                                    <th>360 view link</th>
-                                    <th>Edit/Delete</th>
-                                </tr>
-                            </thead>
-                        </table>
+                            <table style="font-size: 12px;" id="propertyTable" width="100%" class="table table-striped table-bordered table-hover" >
+                                <thead >
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Reference</th>
+                                        <th>Contract Type</th>
+                                        <th>Property Type</th>
+                                        <th>Description</th>
+                                        <th>Arabic Description</th>
+                                        <th>Price</th>
+                                        <th>Area</th>
+                                        <th>Beds</th>
+                                        <th>Baths</th>
+                                        <th>Country</th>
+                                        <th>City</th>
+                                        <th>Area Location</th>
+                                        <th>GeoLocation</th>
+                                        <th>Owner</th>
+                                        <th>Provider</th>
+                                        <th>360 view link</th>
+                                        <th>Edit/Delete</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
 
                     </div>
@@ -88,58 +88,188 @@ if (!isset($_SESSION['loggedin']))
                 <div class="modal-content animated bounceInRight">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title">Update Owner</h4>
+                        <h4 class="modal-title">Update Property</h4>
                     </div>
                     <div class="modal-body">
 
-                        <form method="post" action="api/updateOwner.php" class="form-horizontal ">
-
-
-                            <input type="hidden" name="owner_id" id="owner_id">
+                        <form method="post" action="api/addProperty.php" enctype="multipart/form-data" class="form-horizontal ">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Owner First Name</label>
-                                <div class="col-sm-10"><input required="" id="owner_first_name" name="owner_first_name"  type="text" class="form-control"></div>
+
+                                <label class="col-sm-2 control-label">Contract Type</label>
+                                <div class="col-sm-10"><select id="property_contract"  class="form-control m-b" name="contractType">
+                                        <option value="rent">Rent</option>
+                                        <option value="buy">Buy</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label  class="col-sm-2 control-label">Property Type</label>
+                                <div class="col-sm-10"><select id="propertyType_name" class="form-control m-b" name="propertyType">
+
+                                    </select>
+                                </div>
 
                             </div>
 
                             <div class="hr-line-dashed"></div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Owner Last Name</label>
-                                <div class="col-sm-10"><input id="owner_last_name" required=""   name="owner_last_name"  type="text" class="form-control"></div>
+                                <label class="col-sm-2 control-label">Property Reference#</label>
+                                <div class="col-sm-10"><input required="" id="property_reference"name="propertyReference" placeholder="e.g., VB221" type="text" class="form-control"></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Property Price</label>
+                                <div class="col-sm-10"><input required="" id="property_price" name="propertyPrice" placeholder="e.g., 18000, the price is per year for rental" type="number" class="form-control"></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Property Location</label>
+                                <div  class="col-sm-2">
+                                    <label class="col-sm-offset-4">Country</label>
+                                    <select  id="country_name" class="form-control m-b" name="propertyCountry">
+
+                                    </select>
+                                </div>
+                                <div  class="col-sm-2">
+                                    <label class="col-sm-offset-4">City</label>
+                                    <select id="city_name"  class="form-control m-b" name="propertyCity">
+
+                                    </select>
+                                </div>
+                                <div  class="col-sm-2">
+                                    <label class="col-sm-offset-4">Area</label>
+                                    <select id="area_name" class="form-control m-b" name="propertyAreaLocation">
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Number of bedrooms</label>
+                                <div class="col-sm-10 "><input  id="property_beds" name="propertyBeds"  required="" placeholder="e.g., 4" type="number" class="form-control"></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Number of baths</label>
+                                <div class="col-sm-10"><input id="property_baths"name="propertyBaths" required="" placeholder="e.g., 3" type="number" class="form-control"></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Property Area</label>
+                                <div class="col-sm-10"><input id="property_area" name="propertyArea" required="" placeholder="e.g., 529" type="number" class="form-control"></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Property Description</label>
+                                <div class="col-sm-10"><textarea id="property_description" name="propertyDescription" required="" style="resize: none"  rows="4" placeholder="e.g., Breif description about the property" class="form-control"></textarea></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Arabic Property Description</label>
+                                <div class="col-sm-10"><textarea id="ar_property_description" name="ar_propertyDescription" required="" style="resize: none"  rows="4" placeholder="e.g., نبذه قصيره عن العقار" class="form-control"></textarea></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Amenities</label>
+
+
+                                <div id="amenities" class="col-sm-10">
+
+
+                                </div>
+
+
 
                             </div>
+
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Owner Email</label>
-                                <div class="col-sm-10"><input id="owner_email" required=""   name="owner_email"  type="text" class="form-control"></div>
+                                <label class="col-sm-2 control-label">Location latitude</label>
+                                <div class="col-sm-10"><input id="property_geolocation_lat" required="" step="any" name="propertyLatitude" placeholder="e.g., 21.421342" type="number" class="form-control"></div>
+
+                                <br>
+                                <br>
+                                <br>
+
+
+
+                                <label class="col-sm-2 control-label">Location longitude</label>
+                                <div class="col-sm-10"><input id="property_geolocation_long" required="" step="any" name="propertyLongitude" placeholder="e.g., 19.42321" type="number" class="form-control"></div>
 
                             </div>
+
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Owner Number</label>
-                                <div class="col-sm-10"><input id="owner_number" required=""   name="owner_number"  type="text" class="form-control"></div>
+                            <div  class="form-group">
+                                <label class="col-sm-2 control-label">Property Provider</label>
+                                <div class="col-sm-10"><select id="provider_name" class="form-control m-b" name="propertyProvider">
+
+                                    </select>
+                                </div>
 
                             </div>
+
+
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Owner Username</label>
-                                <div class="col-sm-10"><input id="owner_username" required=""   name="owner_username"  type="text" class="form-control"></div>
+                            <div id="addOwner"  class="form-group">
+                                <label class="col-sm-2 control-label">Property Owner</label>
+                                <div class="col-sm-10">
+                                    <select id="owner_first_name" class="form-control m-b" name="propertyOwner">
+
+
+                                    </select>
+                                </div>
 
                             </div>
+
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Owner Password</label>
-                                <div class="col-sm-10"><input id="owner_password" required=""   name="owner_password"  type="text" class="form-control"></div>
 
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">360 Link</label>
+                                <div class="col-sm-10 "><input name="property360" id="property_360view"  placeholder="e.g., Url of the 360 image" type="text" class="form-control"></div>
                             </div>
+
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+
+                                <label class="col-sm-2 control-label">Property Pictures</label>
+                                <div class="col-sm-10">
+                                    <input name="propertyImages[]" id="property_images" required="required" type="file" multiple="multiple">
+                                </div>
+                            </div>
+
+
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <div class="col-sm-4 col-sm-offset-2">
-                                    <button class="btn btn-primary" type="submit">Update Owner</button>
+                                    <button name="addProp" class="btn btn-primary" type="submit">Update Property</button>
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -175,7 +305,7 @@ if (!isset($_SESSION['loggedin']))
         <script>
 
             $(document).ready(function () {
-                var table=$('#propertyTable').DataTable({
+                var table = $('#propertyTable').DataTable({
                     searching: false,
                     "ajax": "api/getProperties.php",
                     "columnDefs": [{
@@ -224,7 +354,10 @@ if (!isset($_SESSION['loggedin']))
                 });
             }
             function getProperty(id) {
-             
+
+                // $("#property_beds").val("");
+
+
 
                 $.ajax({
                     type: "GET",
@@ -233,8 +366,21 @@ if (!isset($_SESSION['loggedin']))
                     data: {"id": id},
 
                     success: function (data) {
-                       
-                       
+
+                        $("#property_beds").val(data[0].property_beds);
+                     
+                       $("#property_reference").val(data[0].property_reference);
+                        $("#property_price").val(data[0].property_price);
+                    
+                        $("#property_area").val(data[0].property_area);
+                        $("#property_description").val(data[0].property_description);
+                        $("#ar_property_description").val(data[0].ar_property_description);
+                        $("#property_geolocation_lat").val(data[0].property_lat);
+                        $("#property_geolocation_long").val(data[0].property_long);
+                        $("#owner_first_name").val(data[0].owner_first_name);
+                        $("#property_360view").val(data[0].property_360view);
+                        
+                        $("#property_baths").val(data[0].property_baths);
 
 
 
