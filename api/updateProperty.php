@@ -51,6 +51,29 @@ $query = "UPDATE Property SET"
         . " WHERE property_id = $id";
 
 mysqli_query($link, $query);
+
+
+$q1 = "delete from Property_Amenity where amenity_property=$id";
+  mysqli_query($link, $q1);
+if($propertyAmenities != null){
+  
+
+  foreach($propertyAmenities as $value){
+      
+      $q2 = "insert into Property_Amenity (amenity_name,amenity_property) "
+              . "values ('$value','$id')";
+      mysqli_query($link, $q2);
+  
+  }
+  
+ 
+    
+}
+
+
+
+
+
 if ($link != null)
     mysqli_close($link);
 header("Location: ../AvailableProperties.php");
