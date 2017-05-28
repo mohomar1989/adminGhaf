@@ -396,7 +396,7 @@ if (!isset($_SESSION['loggedin']))
                         getCities(data[0].property_city);
                         getCountries(data[0].property_country);
                         getAreas(data[0].proprety_area);
-                        getProviders(data[0].property_proivder);
+                        getProviders(data[0].property_provider);
                         getOwners(data[0].property_owner);
                         getAmenities(data[0].property_amenities);
 
