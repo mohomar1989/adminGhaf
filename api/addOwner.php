@@ -9,7 +9,7 @@ $owner_first_name = $_POST['owner_first_name'];
 $owner_last_name = $_POST['owner_last_name'];
 $owner_number = $_POST['owner_number'];
 $owner_email = $_POST['owner_email'];
-$owner_username = $_POST['owner_username'];
+$owner_username = strtolower($_POST['owner_username']);
 $owner_password = $_POST['owner_password'];
 $owner_national_id = $_POST['owner_national_id'];
 
