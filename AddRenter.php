@@ -14,7 +14,8 @@ if (!isset($_SESSION['loggedin']))
 
 
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content=
+              "width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>Welcome</title>
@@ -79,6 +80,14 @@ if (!isset($_SESSION['loggedin']))
                             </div>
 
                             <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">National Id</label>
+                                <div class="col-sm-10"><input required="" name = "renter_national_id" placeholder="e.g., 98988172" type="tel" class="form-control"></div>
+
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Mobile #</label>
                                 <div class="col-sm-10"><input required="" name = "renter_number" placeholder="e.g., 00971727261521" type="tel" class="form-control"></div>
