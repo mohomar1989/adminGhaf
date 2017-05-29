@@ -19,6 +19,7 @@ $renter_email = $_POST['renter_email'];
 $renter_username = $_POST['renter_username'];
 $renter_number = $_POST['renter_number'];
 $renter_password = $_POST['renter_password'];
+$renter_national_id = $_POST['renter_national_id'];
 $id = $_POST['renter_id'];
 
 
@@ -34,7 +35,8 @@ $query = "UPDATE Renter SET"
         . " renter_email = '$renter_email' ,"
         . " renter_number = '$renter_number',"
         . " renter_username = '$renter_username',"
-        . " renter_password = '$renter_password'"
+        . " renter_password = '$renter_password',"
+        . " renter_national_id = '$renter_national_id'"
         . " WHERE renter_id = $id";
 mysqli_query($link, $query);
 if($link != null)

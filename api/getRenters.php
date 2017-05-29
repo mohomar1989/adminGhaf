@@ -7,7 +7,7 @@ $dbName = "m3z8z9h6_ghafoman";
 $link = mysqli_connect($servername, $username, $password,$dbName);
 mysqli_set_charset($link, "utf8");
 
-$query = "select renter_id,renter_first_name,renter_last_name,renter_number,renter_email,renter_username from Renter";
+$query = "select renter_id,renter_first_name,renter_last_name,renter_number,renter_email,renter_username,renter_national_id from Renter";
 $result = mysqli_query($link, $query);
 $rows= new stdClass();
 $tmp=array();

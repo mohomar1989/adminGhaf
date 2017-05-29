@@ -60,6 +60,7 @@ if (!isset($_SESSION['loggedin']))
                                     <th>Renter Number</th>
                                     <th>Renter Email</th>
                                     <th>Renter Username</th>
+                                    <th>Renter National Id</th>
                                     <th>Edit/Delete</th>
                                 </tr>
                             </thead>
@@ -110,6 +111,14 @@ if (!isset($_SESSION['loggedin']))
                                 <div class="col-sm-10"><input id="renter_number" required=""   name="renter_number"  type="text" class="form-control"></div>
 
                             </div>
+                            
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Renter National Id</label>
+                                <div class="col-sm-10"><input id="renter_national_id" required=""   name="renter_national_id"  type="text" class="form-control"></div>
+
+                            </div>
+                            
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Renter Username</label>
@@ -169,7 +178,7 @@ if (!isset($_SESSION['loggedin']))
 
                     "ajax": "api/getRenters.php",
                     "columnDefs": [{
-                            "targets": 6,
+                            "targets": 7,
                             "width": "10%",
 
                             "render": function (data, type, row) {
@@ -221,6 +230,7 @@ if (!isset($_SESSION['loggedin']))
                 $('#renter_username').val("");
                 $('#renter_password').val("");
                 $('#renter_id').val("");
+                $("#renter_national_id").val("");
 
                 $.ajax({
                     type: "GET",
@@ -238,6 +248,7 @@ if (!isset($_SESSION['loggedin']))
                         $('#renter_username').val(data[0]["renter_username"]);
                         $('#renter_password').val(data[0]["renter_password"]);
                         $('#renter_id').val(data[0]["renter_id"]);
+                        $('#renter_national_id').val(data[0]["renter_national_id"]);
 
 
 

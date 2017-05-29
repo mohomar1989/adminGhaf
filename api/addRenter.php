@@ -11,6 +11,7 @@ $renter_number = $_POST['renter_number'];
 $renter_email = $_POST['renter_email'];
 $renter_username = $_POST['renter_username'];
 $renter_password = $_POST['renter_password'];
+$renter_national_id = $_POST['renter_national_id'];
 
 
 
@@ -29,8 +30,9 @@ $query = "INSERT"
         . " renter_email, "
         . "renter_number, "
         . "renter_username,"
+        . "renter_national_id,"
         . " renter_password) "
-        . "VALUES (NULL, '$renter_first_name', '$renter_last_name', '$renter_email', '$renter_number', '$renter_username', '$renter_password')";
+        . "VALUES (NULL, '$renter_first_name', '$renter_last_name', '$renter_email', '$renter_number', '$renter_username','$renter_national_id', '$renter_password')";
 
 if(!mysqli_query($link, $query)){
             header('HTTP/1.1 500 Internal Server');
