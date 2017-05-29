@@ -30,7 +30,7 @@ $query = "INSERT"
         . " owner_email, "
         . "owner_number, "
         . "owner_username,"
-        . "owner_national_id"
+        . "owner_national_id,"
         . " owner_password) "
         . "VALUES (NULL, '$owner_first_name', '$owner_last_name', '$owner_email', '$owner_number', '$owner_username','$owner_national_id', '$owner_password')";
 
