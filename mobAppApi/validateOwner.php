@@ -12,7 +12,7 @@ mysqli_set_charset($link, "utf8");
 $renter_username = $_POST['username'];
 $renter_password = $_POST['password'];
 
-$query = "select * from Owner where owner_username = '$renter_username' and owner_password = '$renter_password'";
+$query = "select * from Owner where owner_username = '$renter_username' and binary owner_password = '$renter_password'";
 $result = mysqli_query($link, $query);
 $row = mysqli_fetch_assoc($result);
 if(mysqli_num_rows($result)>0)
