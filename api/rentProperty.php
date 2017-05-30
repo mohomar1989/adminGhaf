@@ -9,7 +9,7 @@ $link = mysqli_connect($servername, $username, $password,$dbName);
 mysqli_set_charset($link, "utf8");
 
 
-$property_id = $_POST['property_id'];
+$proeprty_reference = $_POST['property_reference'];
 $renter_id = $_POST['renter_id'];
 $building_number = $_POST['building_number'];
 $start_date = $_POST['start_date'];
