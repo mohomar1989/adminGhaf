@@ -21,6 +21,7 @@ $security_deposit = $_POST['security_deposit'];
 $water_reader = $_POST['water_reader'];
 $elec_reader = $_POST['elec_reader'];
 $payments_paid = $_POST['payments_paid'];
+$contract_number = $_POST['contract_number'];
 //file name is contract
 
 

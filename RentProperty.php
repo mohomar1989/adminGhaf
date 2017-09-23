@@ -210,6 +210,17 @@ if (!isset($_SESSION['loggedin']))
                             <div class="hr-line-dashed"></div>
 
                             <div class="form-group">
+                                <label  class="col-sm-2 control-label">Contract Number</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="contract_number" required="" placeholder="78236" class="form-control">
+                                </div>
+
+                            </div>
+
+
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">Upload contract copy</label>
 
                                 <div class="col-sm-10 fileinput fileinput-new" data-provides="fileinput">
@@ -265,7 +276,7 @@ if (!isset($_SESSION['loggedin']))
         <script src="js/jquery.form.min.js"></script>
         <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
         <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
-    <script src="js/plugins/validate/jquery.validate.min.js"></script>
+        <script src="js/plugins/validate/jquery.validate.min.js"></script>
 
         <script>
 
@@ -273,9 +284,9 @@ if (!isset($_SESSION['loggedin']))
             $(document).ready(function () {
 
 
-  $("myform").validate({
-                
-             });
+                $("myform").validate({
+
+                });
 
                 $.ajax({
                     dataType: "json",
