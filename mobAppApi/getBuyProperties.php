@@ -25,9 +25,7 @@ area_name,
 city_name,
 property_area as Area,
 property_360view as View360,
-property_geolocation as GeoLocation,
-
-
+property_geolocation as GeoLocation
 
 
 From Property
@@ -38,8 +36,7 @@ left join City  on city_id = property_city
 left join Provider  on provider_id = property_provider
 Left join PropertyType  on propertyType_id = property_type
 
-where property_contract = 'buy'
-";
+where property_contract = 'buy' ";
 $result = mysqli_query($link, $query);
 $rows = array();
 
