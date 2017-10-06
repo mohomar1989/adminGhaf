@@ -58,7 +58,7 @@ if (!isset($_SESSION['loggedin']))
                             <div class="sk-double-bounce1"></div>
                             <div class="sk-double-bounce2"></div>
                         </div>
-                        <form id="myform" method="post"  class="form-horizontal ">
+                        <form id="myform" method="post" action="api/rentProperty.php" enctype="multipart/form-data"  class="form-horizontal ">
 
                             <div class="form-group">
                                 <label  class="col-sm-2 control-label">Choose a property you want to rent</label>
