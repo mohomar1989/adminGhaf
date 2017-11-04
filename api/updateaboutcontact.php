@@ -49,8 +49,6 @@ $query = "UPDATE CMS,CMS_AR SET "
         . "CMS.office='$office',"
         . "CMS.email='$email' WHERE CMS.id=0 AND CMS_AR.id=0";
 
-echo $query;
-
 
 mysqli_query($link, $query);
 if($link != null)
