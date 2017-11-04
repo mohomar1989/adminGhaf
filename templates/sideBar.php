@@ -77,6 +77,7 @@
                         case 5:
                         case 6:
                         case 8:
+                        case 21:
                         case 7:echo 'class="active"';break;
                     }
                     ?>>
@@ -119,6 +120,13 @@
                         }
                     ?>>
                         <a href="Areas.php"><i class="fa fa-user"></i> <span class="nav-label">Property Area</span></a>
+                    </li>
+                                           <li <?php
+                        if ($pageNum == 21) {
+                            echo 'class="active"';
+                        }
+                    ?>>
+                        <a href="AboutContact.php"><i class="fa fa-user"></i> <span class="nav-label">Aboutus/Contactus</span></a>
                     </li>
                 </ul>
             </li>
