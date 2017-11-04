@@ -5,12 +5,13 @@ $emailSubject = "Customer Query";
 $customerName = $_POST['customerName'];
 $customerNumber = $_POST['customerNumber'];
 $customerEmail = $_POST['customerEmail'];
+$toEmail = $_POST['toEmail'];
 
 
 $emailBody1 = "Contact request from:$customerName \nMobile number:$customerNumber\nEmail:$customerEmail \nMessage:\n$emailBody";
 $from = new \SendGrid\Email("Ghaf Admin", "admin@ghafoman.net");
 $subject = "test";
-$to = new \SendGrid\Email("", "shamote.ali@me.com");
+$to = new \SendGrid\Email("", $toEmail);
 $content = new \SendGrid\Content("text/plain", $emailBody1);
 $mail = new \SendGrid\Mail($from, $emailSubject, $to, $content);
 
