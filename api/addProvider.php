@@ -26,7 +26,9 @@ $query = "INSERT"
         . " INTO Provider"
         . " (provider_id, "
         . "provider_name,"
-        ."provider_logo)"
+        ."provider_logo,"
+        . "provider_email,"
+        . "provider_number)"
         . "VALUES (NULL, '$provider_name','$logo_url','$provider_email','$provider_number')";
 
 mysqli_query($link, $query);

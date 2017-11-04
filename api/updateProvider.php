@@ -7,6 +7,8 @@ $dbName = "m3z8z9h6_ghafoman";
 
 
 $provider_name = $_POST['provider_name'];
+$provider_email = $_POST['provider_email'];
+$provider_number = $_POST['provider_number'];
 $id = $_POST['provider_id'];
 $query ="UPDATE Owner SET"
         . " provider_name = '$provider_name' "
@@ -26,6 +28,8 @@ $logo_url = "http://admin.ghafoman.net/uploads/".$fileName;
 
 $query = "UPDATE Provider SET"
         . " provider_name = '$provider_name' ,"
+        . "provider_email = '$provider_email',"
+        . "provider_number = '$provider_number',"
         . " provider_logo ='$logo_url' "
         . " WHERE provider_id = $id";
 }
