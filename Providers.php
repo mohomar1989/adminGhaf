@@ -56,6 +56,8 @@ if (!isset($_SESSION['loggedin']))
                                 <tr>
                                     <th>Provider ID</th>
                                     <th>Provider Name</th>
+                                    <th>Provider Email</th>
+                                    <th>Provide Number</th>
                                     <th>Provider Logo</th>
 
                                     <th>Edit/Delete</th>
@@ -87,6 +89,16 @@ if (!isset($_SESSION['loggedin']))
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Provider Name</label>
                                 <div class="col-sm-10"><input required="" id="provider_name" name="provider_name"  type="text" class="form-control"></div>
+
+                            </div>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">Provider Email</label>
+                                <div class="col-sm-10"><input required="" id="provider_email" name="provider_email"  type="text" class="form-control"></div>
+
+                            </div>
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">Provider Number</label>
+                                <div class="col-sm-10"><input required="" id="provider_number" name="provider_number"  type="text" class="form-control"></div>
 
                             </div>
 
@@ -146,7 +158,7 @@ if (!isset($_SESSION['loggedin']))
                                             searching: false,
                                             "ajax": "api/getProviders.php",
                                             "columnDefs": [{
-                                                    "targets": 3,
+                                                    "targets": 5,
                                                     "width": "10%",
 
                                                     "render": function (data, type, row) {
@@ -156,7 +168,7 @@ if (!isset($_SESSION['loggedin']))
                                                     }
                                                 },
                                                 {
-                                                    "targets": 2,
+                                                    "targets": 4,
                                                     "render": function (data, type, row) {
 
                                                         return '<img src="' + row[2] + '" style="max-height:100px;max-width:100px"/>';
@@ -202,6 +214,8 @@ if (!isset($_SESSION['loggedin']))
 
                                         $('#provider_id').val("");
                                         $('#provider_name').val("");
+                                        $('#provider_email').val("");
+                                        $('#provider_number').val("");
                                         $("#provider_logo_image").attr('src', "");
                                         $('#provider_logo').val("");
                                         $.ajax({
@@ -215,6 +229,8 @@ if (!isset($_SESSION['loggedin']))
 
                                                 $('#provider_id').val(data[0]["provider_id"]);
                                                 $('#provider_name').val(data[0]["provider_name"]);
+                                                $('#provider_email').val(data[0]["provider_email"]);
+                                                $('#provider_number').val(data[0]["provider_number"]);
                                                 $("#provider_logo_image").attr('src', data[0]["provider_logo"]);
 
 

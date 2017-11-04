@@ -6,6 +6,8 @@ $password = "Intheend13!";
 $dbName = "m3z8z9h6_ghafoman";
 
 $provider_name = $_POST['provider_name'];
+$provider_email = $_POST['provider_email'];
+$provider_number= $_POST['provider_number'];
 $fileName = $_FILES['provider_logo']['name'];
 $fileName = uniqid().$fileName;
 $tempNAme = $_FILES['provider_logo']['tmp_name'];
@@ -25,7 +27,7 @@ $query = "INSERT"
         . " (provider_id, "
         . "provider_name,"
         ."provider_logo)"
-        . "VALUES (NULL, '$provider_name','$logo_url')";
+        . "VALUES (NULL, '$provider_name','$logo_url','$provider_email','$provider_number')";
 
 mysqli_query($link, $query);
 if ($link != null) {

@@ -63,6 +63,16 @@ if (!isset($_SESSION['loggedin']))
                                 <div class="col-sm-10"><input required="" name="provider_name" placeholder="e.g., Name of provider" type="text" class="form-control"></div>
 
                             </div>
+                               <div class="form-group">
+                                <label class="col-sm-2 control-label">Provider Email</label>
+                                <div class="col-sm-10"><input required="" name="provider_email" placeholder="e.g., Name of provider" type="text" class="form-control"></div>
+
+                            </div>
+                               <div class="form-group">
+                                <label class="col-sm-2 control-label">Provider Number</label>
+                                <div class="col-sm-10"><input required="" name="provider_number" placeholder="e.g., Name of provider" type="text" class="form-control"></div>
+
+                            </div>
 
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
