@@ -171,7 +171,7 @@ if (!isset($_SESSION['loggedin']))
                                                     "targets": 4,
                                                     "render": function (data, type, row) {
 
-                                                        return '<img src="' + row[2] + '" style="max-height:100px;max-width:100px"/>';
+                                                        return '<img src="' + row[4] + '" style="max-height:100px;max-width:100px"/>';
 
                                                     }
                                                 }],
