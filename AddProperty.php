@@ -481,11 +481,11 @@ if (!isset($_SESSION['loggedin']))
                        
 
                         $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
-//                        toggleFields(); // call this first so we start out with the correct visibility depending on the selected form values
-//                        // this will call our toggleFields function every time the selection value of our other field changes
-//                        $("#providersSelect").change(function () {
-//                            toggleFields();
-//                        });
+                        toggleFields(); // call this first so we start out with the correct visibility depending on the selected form values
+                        // this will call our toggleFields function every time the selection value of our other field changes
+                        $("#providersSelect").change(function () {
+                            toggleFields();
+                        });
 
 
                     }
