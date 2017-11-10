@@ -363,7 +363,7 @@ if (!isset($_SESSION['loggedin']))
                         $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
                         swal({
                             title: "Saved!",
-                            text: "New provider has been added!",
+                            text: "Property has been rented!",
                             type: "success"
                         });
                         $('#myform').each(function () {

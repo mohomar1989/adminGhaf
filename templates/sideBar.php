@@ -139,6 +139,7 @@
                         case 12:
                         case 13:
                         case 14:
+                        case 30:
                         case 11:echo 'class="active"';break;
                         
                     }
@@ -181,6 +182,15 @@
                     }
                     ?>>
                         <a  href="Providers.php"><i class="fa fa-user"></i> <span class="nav-label">Providers</span></a>
+                        
+                    </li>
+                    
+                     <li <?php
+                    if ($pageNum == 30) {
+                        echo 'class="active"';
+                    }
+                    ?>>
+                        <a  href="RentedProperties.php"><i class="fa fa-user"></i> <span class="nav-label">Rented Properties</span></a>
                     </li>
                 </ul>
             </li>

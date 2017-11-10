@@ -29,11 +29,48 @@ $fileName = $_FILES['contract']['name'];
 $fileName = uniqid().$fileName;
 $tempNAme = $_FILES['contract']['tmp_name'];
 move_uploaded_file($tempNAme, "../uploads/".$fileName);
-$logo_url = "http://admin.ghafoman.net/uploads/".$fileName;
+$contractURL = "http://admin.ghafoman.net/uploads/".$fileName;
         
 
 
 
 
-$query = "select property_reference
-From Property where property_contract= 'rent' ";
+$query = "INSERT INTO `m3z8z9h6_ghafoman`.`Property_Rent` "
+        . "(`property_rent_id`, "
+        . "`property_rent_property_id`,"
+        . " `property_rent_renter_id`,"
+        . " `property_rent_start_date`,"
+        . " `property_rent_end_date`,"
+        . " `property_rent_yearly_cost`,"
+        . " `property_rent_contract_type`,"
+        . " `property_rent_month_rate`,"
+        . " `property_rent_deposit`,"
+        . " `property_rent_water`,"
+        . " `property_rent_electricity`,"
+        . " `property_rent_total_payment`,"
+        . " `property_rent_current_payments`,"
+        . " `property_rent_contract_copy`,"
+        . " `property_rent_contract_number`)"
+        . " VALUES "
+        . "(NULL,"
+        . " '$proeprty_reference',"
+        . " '$renter_id',"
+        . " '$start_date',"
+        . " '$end_date',"
+        . " '$year_cost',"
+        . " '$contract_type',"
+        . " '$month_rent',"
+        . " '$security_deposit',"
+        . " '$water_reader',"
+        . " '$elec_reader',"
+        . " '12',"
+        . " '$payments_paid',"
+        . " '$contractURL',"
+        . " '$contract_number')";
+
+
+
+mysqli_query($link, $query);
+if($link != null)
+mysqli_close($link);
+
