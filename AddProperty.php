@@ -494,13 +494,13 @@ if (!isset($_SESSION['loggedin']))
             }
 
 
-//// this toggles the visibility of other server
-//            function toggleFields() {
-//                if ($("#providersSelect").val() === "1")
-//                    $("#addOwner").show();
-//                else
-//                    $("#addOwner").hide();
-//            }
+// this toggles the visibility of other server
+            function toggleFields() {
+                if ($("#providersSelect").val() === "1")
+                    $("#addOwner").show();
+                else
+                    $("#addOwner").hide();
+            }
 
 
 
