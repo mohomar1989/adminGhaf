@@ -10,6 +10,7 @@ $link = mysqli_connect($servername, $username, $password,$dbName);
 mysqli_set_charset($link, "utf8");
 
 $query = "select
+    
     property_reference,
     concat(renter_first_name,' ',renter_last_name),
     property_rent_start_date,
@@ -22,7 +23,9 @@ $query = "select
     property_rent_electricity,
     concat(property_rent_current_payments,'/',property_rent_total_payment),
     property_rent_contract_number,
-    property_rent_contract_copy
+    property_rent_contract_copy,
+    property_rent_id,
+    property_id
     
     
 

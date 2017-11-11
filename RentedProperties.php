@@ -71,6 +71,7 @@ if (!isset($_SESSION['loggedin']))
     property_rent_contract_number,
     property_rent_contract_copy
                                     -->
+
                                     <th>Property Reference</th>
                                     <th>Renter Name</th>
                                     <th>Rent Start Date</th>
@@ -216,7 +217,7 @@ if (!isset($_SESSION['loggedin']))
                             "width": "10%",
 
                             "render": function (data, type, row) {
-                                return '<button type="button" onclick="releaseProperty(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
+                                return '<button type="button" onclick="addPayment(\'' + row[13] + '\');" class="btn btn-white btn-xs"><i class="fa fa-plus"></i></button>'
                                         ;
                             }
                         },
@@ -225,7 +226,7 @@ if (!isset($_SESSION['loggedin']))
                             "width": "10%",
 
                             "render": function (data, type, row) {
-                                                                return '<button type="button" onclick="releaseProperty(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-plus"></i></button>'
+                                                                return '<button type="button" onclick="releaseProperty(\'' + row[13] + '\',\'' + row[14] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
   ;
                             }
                         }],
@@ -236,7 +237,7 @@ if (!isset($_SESSION['loggedin']))
             });
 
 
-            function deleteArea(id) {
+            function addPayment(id) {
 
                 swal({
                     title: "Are you sure?",
@@ -244,15 +245,15 @@ if (!isset($_SESSION['loggedin']))
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes, delete it!",
+                    confirmButtonText: "Yes, add payment!",
                     closeOnConfirm: false
                 }, function () {
                     $.ajax({
                         type: "GET",
-                        url: "api/delete.php", // replace 'PHP-FILE.php with your php file
+                        url: "api/addPayment.php", // replace 'PHP-FILE.php with your php file
 
 
-                        data: {"id": id, "table": "Renter", "col": "renter_id"},
+                        data: {"id": id},
                         success: function () {
 
                             location.reload();
@@ -264,42 +265,37 @@ if (!isset($_SESSION['loggedin']))
 
                 });
             }
-            function getRenter(id) {
-                $('#renter_first_name').val("");
-                $('#renter_last_name').val("");
-                $('#renter_email').val("");
-                $('#renter_number').val("");
-                $('#renter_username').val("");
-                $('#renter_password').val("");
-                $('#renter_id').val("");
-                $("#renter_national_id").val("");
+            
+            
+             function releaseProperty (id,propId) {
 
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: "api/getEntry.php", // replace 'PHP-FILE.php with your php file
-                    data: {"id": id, "pk": "renter_id", "table": "Renter"},
-
-                    success: function (data) {
-                        // window.alert(data[0]["ar_amenity_name"]);
-
-                        $('#renter_first_name').val(data[0]["renter_first_name"]);
-                        $('#renter_last_name').val(data[0]["renter_last_name"]);
-                        $('#renter_email').val(data[0]["renter_email"]);
-                        $('#renter_number').val(data[0]["renter_number"]);
-                        $('#renter_username').val(data[0]["renter_username"]);
-                        $('#renter_password').val(data[0]["renter_password"]);
-                        $('#renter_id').val(data[0]["renter_id"]);
-                        $('#renter_national_id').val(data[0]["renter_national_id"]);
+                swal({
+                    title: "Are you sure? rentId ="+id+" Prop id ="+propId,
+                    text: "You will not be able to recover this entry!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, release property!",
+                    closeOnConfirm: false
+                }, function () {
+                    $.ajax({
+                        type: "GET",
+                        url: "api/releaseProperty.php", // replace 'PHP-FILE.php with your php file
 
 
+                        data: {"id": id,"propId":propId},
+                        success: function () {
 
-                    },
-                    error: function () {
-                        alert('Some error occurred!');
-                    }
+                            location.reload();
+                        },
+                        error: function () {
+                            alert('Some error occurred!');
+                        }
+                    });
+
                 });
             }
+          
 
         </script>
 

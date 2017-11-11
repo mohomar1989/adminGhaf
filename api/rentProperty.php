@@ -71,6 +71,10 @@ $query = "INSERT INTO `m3z8z9h6_ghafoman`.`Property_Rent` "
 
 
 mysqli_query($link, $query);
+
+$query1 = "UPDATE `m3z8z9h6_ghafoman`.`Property` SET `property_isRented` = '1' WHERE `Property`.`property_id` = $proeprty_reference";
+
+mysqli_query($link, $query1);
 if($link != null)
 mysqli_close($link);
 
