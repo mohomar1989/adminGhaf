@@ -54,14 +54,37 @@ if (!isset($_SESSION['loggedin']))
                         <table id="renterTable" class="table table-striped table-bordered table-hover" >
                             <thead>
                                 <tr>
-                                    <th>Renter ID</th>
-                                    <th>Renter First Name</th>
-                                    <th>Renter Last Name</th>
-                                    <th>Renter Number</th>
-                                    <th>Renter Email</th>
-                                    <th>Renter Username</th>
-                                    <th>Renter National Id</th>
-                                    <th>Edit/Delete</th>
+                                    
+                                    <!-- 
+                                    
+                                    property_reference,
+    concat(renter_first_name,' ',renter_last_name),
+    property_rent_start_date,
+    property_rent_end_date,
+    property_rent_yearly_cost,
+    property_rent_contract_type,
+    property_rent_month_rate,
+    property_rent_deposit,
+    property_rent_water,
+    property_rent_electricity,
+    concat(property_rent_current_payments,'/',property_rent_total_payment),
+    property_rent_contract_number,
+    property_rent_contract_copy
+                                    -->
+                                    <th>Property Reference</th>
+                                    <th>Renter Name</th>
+                                    <th>Rent Start Date</th>
+                                    <th>Rent End Date</th>
+                                    <th>Rent Yearly Cost</th>
+                                    <th>Rent Contract Type</th>
+                                    <th>Rent Monthly Rate</th>
+                                    <th>Rent Deposit</th>
+                                    <th>Water Meter</th>
+                                    <th>Electricity Meter</th>
+                                    <th>Current Payments</th>
+                                    <th>Contract Number</th>
+                                    <th>Contract Copy</th>
+                                    
                                 </tr>
                             </thead>
                         </table>
@@ -176,7 +199,7 @@ if (!isset($_SESSION['loggedin']))
                 $('#renterTable').DataTable({
                     searching: false,
 
-                    "ajax": "api/getRenters.php",
+                    "ajax": "api/getRentedProperties.php",
                     "columnDefs": [{
                             "targets": 7,
                             "width": "10%",
