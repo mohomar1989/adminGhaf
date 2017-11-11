@@ -84,6 +84,8 @@ if (!isset($_SESSION['loggedin']))
                                     <th>Current Payments</th>
                                     <th>Contract Number</th>
                                     <th>Contract Copy</th>
+                                    <th>Add Payment</th>
+                                    <th>Release Property</th>
                                     
                                 </tr>
                             </thead>
@@ -200,8 +202,27 @@ if (!isset($_SESSION['loggedin']))
                     searching: false,
 
                     "ajax": "api/getRentedProperties.php",
-                    "columnDefs": [{
-                            "targets": 7,
+                    "columnDefs": [
+                        {
+                            "targets": 12,
+                            "width": "10%",
+
+                            "render": function (data, type, row) {
+                                                                                        return '<img src="' + row[12] + '" style="max-height:100px;max-width:100px"/>';
+
+                            }
+                        },{
+                            "targets": 13,
+                            "width": "10%",
+
+                            "render": function (data, type, row) {
+                                return '<button type="button" onclick="getRenter(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>'
+                                        + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
+                                        ;
+                            }
+                        },
+                        {
+                            "targets": 14,
                             "width": "10%",
 
                             "render": function (data, type, row) {
