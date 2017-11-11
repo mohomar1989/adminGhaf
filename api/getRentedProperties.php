@@ -24,8 +24,10 @@ $query = "select
     concat(property_rent_current_payments,'/',property_rent_total_payment),
     property_rent_contract_number,
     property_rent_contract_copy,
+    property_rent_building_number,
     property_rent_id,
     property_id
+    
     
     
 

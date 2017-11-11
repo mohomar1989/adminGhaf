@@ -50,7 +50,8 @@ $query = "INSERT INTO `m3z8z9h6_ghafoman`.`Property_Rent` "
         . " `property_rent_total_payment`,"
         . " `property_rent_current_payments`,"
         . " `property_rent_contract_copy`,"
-        . " `property_rent_contract_number`)"
+        . " `property_rent_contract_number`,"
+        . " `property_rent_building_number`)"
         . " VALUES "
         . "(NULL,"
         . " '$proeprty_reference',"
@@ -66,7 +67,8 @@ $query = "INSERT INTO `m3z8z9h6_ghafoman`.`Property_Rent` "
         . " '12',"
         . " '$payments_paid',"
         . " '$contractURL',"
-        . " '$contract_number')";
+        . " '$contract_number'"
+        . " '$building_number')";
 
 
 

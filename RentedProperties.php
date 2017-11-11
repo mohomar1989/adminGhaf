@@ -51,7 +51,9 @@ if (!isset($_SESSION['loggedin']))
 
                 <div class="ibox">
                     <div class="ibox-content">
+                        <div class="table-responsive">
                         <table id="renterTable" class="table table-striped table-bordered table-hover" >
+
                             <thead>
                                 <tr>
                                     
@@ -85,12 +87,14 @@ if (!isset($_SESSION['loggedin']))
                                     <th>Current Payments</th>
                                     <th>Contract Number</th>
                                     <th>Contract Copy</th>
+                                    <th>Building Number</th>
                                     <th>Add Payment</th>
                                     <th>Release Property</th>
                                     
                                 </tr>
                             </thead>
                         </table>
+                        </div>
 
                     </div>
                 </div>
@@ -213,20 +217,20 @@ if (!isset($_SESSION['loggedin']))
 
                             }
                         },{
-                            "targets": 13,
-                            "width": "10%",
-
-                            "render": function (data, type, row) {
-                                return '<button type="button" onclick="addPayment(\'' + row[13] + '\');" class="btn btn-white btn-xs"><i class="fa fa-plus"></i></button>'
-                                        ;
-                            }
-                        },
-                        {
                             "targets": 14,
                             "width": "10%",
 
                             "render": function (data, type, row) {
-                                                                return '<button type="button" onclick="releaseProperty(\'' + row[13] + '\',\'' + row[14] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
+                                return '<button type="button" onclick="addPayment(\'' + row[14] + '\');" class="btn btn-white btn-xs"><i class="fa fa-plus"></i></button>'
+                                        ;
+                            }
+                        },
+                        {
+                            "targets": 15,
+                            "width": "10%",
+
+                            "render": function (data, type, row) {
+                                                                return '<button type="button" onclick="releaseProperty(\'' + row[14] + '\',\'' + row[15] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
   ;
                             }
                         }],
@@ -270,7 +274,7 @@ if (!isset($_SESSION['loggedin']))
              function releaseProperty (id,propId) {
 
                 swal({
-                    title: "Are you sure? rentId ="+id+" Prop id ="+propId,
+                    title: "Are you sure?",
                     text: "You will not be able to recover this entry!",
                     type: "warning",
                     showCancelButton: true,
