@@ -208,7 +208,7 @@ if (!isset($_SESSION['loggedin']))
                             "width": "10%",
 
                             "render": function (data, type, row) {
-                                                                                        return '<img src="' + row[12] + '" style="max-height:100px;max-width:100px"/>';
+                                                                                        return '<a href="'+row[12]+'" download="ContractCopy.png" ><img src="' + row[12] + '" style="max-height:100px;max-width:100px"/></a>';
 
                             }
                         },{
@@ -216,8 +216,7 @@ if (!isset($_SESSION['loggedin']))
                             "width": "10%",
 
                             "render": function (data, type, row) {
-                                return '<button type="button" onclick="getRenter(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>'
-                                        + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
+                                return '<button type="button" onclick="releaseProperty(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
                                         ;
                             }
                         },
@@ -226,9 +225,8 @@ if (!isset($_SESSION['loggedin']))
                             "width": "10%",
 
                             "render": function (data, type, row) {
-                                return '<button type="button" onclick="getRenter(\'' + row[0] + '\');" class="btn btn-white btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-wrench"></i></button>'
-                                        + '<button type="button" onclick="deleteArea(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-times"></i></button>'
-                                        ;
+                                                                return '<button type="button" onclick="releaseProperty(\'' + row[0] + '\');" class="btn btn-white btn-xs"><i class="fa fa-plus"></i></button>'
+  ;
                             }
                         }],
                     responsive: true
