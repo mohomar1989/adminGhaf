@@ -6,6 +6,7 @@ $username = "m3z8z9h6_admin";
 $password = "Intheend13!";
 $dbName = "m3z8z9h6_ghafoman";
 $renterId  = $_GET['renter_id'];
+$ownerId = $_GET['owner_id'];
 $link = mysqli_connect($servername, $username, $password, $dbName);
 mysqli_set_charset($link, "utf8");
 
@@ -23,9 +24,12 @@ left join City  on city_id = property_city
 left join Provider  on provider_id = property_provider
 Left join PropertyType  on propertyType_id = property_type 
 left join Renter on renter_id = property_rent_renter_id
+";
 
-
-where property_rent_renter_id=$renterId";
+if(isset($_GET['renter_id']))
+$query.="where property_rent_renter_id=$renterId";
+else
+    $query.="where property_owner=$ownerId";
 $result = mysqli_query($link, $query);
 $rows = array();
 
