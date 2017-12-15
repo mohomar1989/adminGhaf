@@ -294,7 +294,7 @@ if (!isset($_SESSION['loggedin']))
                     type: "GET",
                     cache: false,
 
-                    url: "api/getRentProperties.php",
+                    url: "api/getAvailRentProp.php",
 
                     success: function (data) {
 

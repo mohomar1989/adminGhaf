@@ -67,10 +67,10 @@ $query = "INSERT INTO `m3z8z9h6_ghafoman`.`Property_Rent` "
         . " '12',"
         . " '$payments_paid',"
         . " '$contractURL',"
-        . " '$contract_number'"
+        . " '$contract_number',"
         . " '$building_number')";
 
-
+echo $query;
 
 mysqli_query($link, $query);
 
