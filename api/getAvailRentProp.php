@@ -8,7 +8,7 @@ $link = mysqli_connect($servername, $username, $password,$dbName);
 mysqli_set_charset($link, "utf8");
 
 $query = "select property_reference , property_id
-From Property where property_contract= 'rent' and property_isRented = '1' ";
+From Property where property_contract= 'rent' and property_isRented = '0' ";
 $result = mysqli_query($link, $query);
 $rows=array();
 
